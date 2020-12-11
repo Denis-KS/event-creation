@@ -1,15 +1,16 @@
 export interface IEvent {
-    title: string,
-    description: string,
-    category_id: number | null,
-    paid_event: boolean,
-    event_fee: number | null,
-    reward: number | null,
-    date: string,
-    duration: number,
+    id: number;
+    title: string;
+    description: string;
+    category_id: number | null;
+    paid_event: boolean;
+    event_fee: number;
+    reward: number;
+    date: string;
+    duration: number;
     coordinator: {
-        email: string,                                                      
-        id: string,
+        email: string;                                                     
+        id: string;
     },
 }
 
@@ -18,12 +19,12 @@ export interface IEventForm {
     description: IFormField<string>;
     category_id: IFormField<number | string>;
     paid_event: IFormField<boolean>;
-    event_fee: IFormField<number | null>;
-    reward: IFormField<number | null>;
+    event_fee: IFormField<number>;
+    reward: IFormField<number>;
     email: IFormField<string>;                                                   
     id: IFormField<number>;
     date: IFormField<string>;
-    duration: IFormField<number | null>;
+    duration: IFormField<number>;
     time: IFormField<string>;
     period: IFormField<DayPeriod>;
 }
