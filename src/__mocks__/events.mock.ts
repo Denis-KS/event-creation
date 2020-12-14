@@ -1,3 +1,5 @@
+import { IActivity } from "../models/activity.model";
+import { ICoordinator } from "../models/coordinator.model";
 import { IEvent } from "../models/event.model";
 
 export const mockedEvent: IEvent = {
@@ -15,3 +17,24 @@ export const mockedEvent: IEvent = {
         id: 'test',
     },
 };
+
+export const mockedInitialEvents: Map<number, IEvent> = new Map([
+    [0, mockedEvent],
+    [1, { ...mockedEvent, id: 1 }],
+    [2, { ...mockedEvent, id: 2 }],
+]);
+
+export const mockedEventsAfterDelete: Map<number, IEvent> = new Map([
+    [0, mockedEvent],
+    [2, { ...mockedEvent, id: 2 }],
+]);
+
+export const mockedEventsAfterUpdate: Map<number, IEvent> = new Map([
+    [0, mockedEvent],
+    [1, { ...mockedEvent, id: 1, title: 'Updated Test Event' }],
+    [2, { ...mockedEvent, id: 2 }],
+]);
+
+export const mockedActivity: IActivity = { id: 0, name: 'Test Activity' };
+
+export const mockedCoordinator: ICoordinator = { id: 0, name: 'Test', lastname: 'Coordinator',  email: 'test@test.test' };
