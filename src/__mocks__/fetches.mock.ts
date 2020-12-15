@@ -1,0 +1,46 @@
+import { IActivity } from "../models/activity.model";
+import { ICoordinator } from "../models/coordinator.model";
+import { ICredentials } from "../models/credentials.model";
+
+export const mockedActivitiesResponse: IActivity[] = [
+    { "id": 0, "name": "Cycling" },
+    { "id": 1, "name": "Hiking" },
+    { "id": 2, "name": "Cooking" },
+    { "id": 3, "name": "Rock climbing" },
+    { "id": 4, "name": "Yoga" },
+    { "id": 5, "name": "Fencing" },
+    { "id": 6, "name": "Swimming" },
+    { "id": 7, "name": "Badminton" },
+    { "id": 8, "name": "Running" },
+    { "id": 9, "name": "Dance" }
+  ];
+
+  export const coordinatorSelf: ICredentials[] = [
+    { "id": 0, "name": "Me - Daniel Mitchell" },
+  ];
+
+  export const coordinatorsOthers: ICredentials[] = [
+    { "id": 1, "name": "Albert Alexander" },
+    { "id": 2, "name": "Philip Hughes" },
+    { "id": 3, "name": "Walter Nelson" },
+    { "id": 4, "name": "Ashley Hernandez" },
+    { "id": 5, "name": "Donna Washington" },
+    { "id": 6, "name": "Andrew White" },
+    { "id": 7, "name": "Sharon Allen" },
+    { "id": 8, "name": "Russell Parker" },
+    { "id": 9, "name": "Janet Stewart" },
+  ];
+  
+  export const mockedCoordinatorsResponse: ICoordinator[] = [
+    { "id": 0, "name": "Daniel", "lastname": "Mitchell", "email": "daniel.mitchell@hussa.rs" },
+    { "id": 1, "name": "Albert", "lastname": "Alexander", "email": "albert.alexander@hussa.rs" },
+    { "id": 2, "name": "Philip", "lastname": "Hughes", "email": "philip.hughes@hussa.rs" },
+    { "id": 3, "name": "Walter", "lastname": "Nelson", "email": "walter.nelson@hussa.rs" },
+    { "id": 4, "name": "Ashley", "lastname": "Hernandez", "email": "ashley.hernandez@hussa.rs" },
+    { "id": 5, "name": "Donna", "lastname": "Washington", "email": "donna.washington@hussa.rs" },
+    { "id": 6, "name": "Andrew", "lastname": "White", "email": "andrew.white@hussa.rs" },
+    { "id": 7, "name": "Sharon", "lastname": "Allen", "email": "sharon.allen@hussa.rs" },
+    { "id": 8, "name": "Russell", "lastname": "Parker", "email": "russell.parker@hussa.rs" },
+    { "id": 9, "name": "Janet", "lastname": "Stewart", "email": "janet.stewart@hussa.rs" }
+  ];
+  

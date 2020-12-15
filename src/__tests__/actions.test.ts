@@ -1,5 +1,4 @@
 import configureStore from 'redux-mock-store';
-import { mockedActivitiesResponse, mockedCoordinatorsResponse } from '../api/fetches';
 import { 
     addOrUpdateEventAction,
     ADD_OR_UPDATE_EVENT, 
@@ -12,6 +11,7 @@ import {
 } from '../store/actions';
 import { initialState } from '../store/reducer';
 import { mockedActivity } from '../__mocks__/events.mock';
+import { mockedActivitiesResponse, mockedCoordinatorsResponse } from '../__mocks__/fetches.mock';
 
 describe('Actions', () => {
 

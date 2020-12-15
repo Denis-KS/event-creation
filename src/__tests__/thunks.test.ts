@@ -1,11 +1,11 @@
 import fetchMock from 'fetch-mock';
 import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
-import { mockedActivitiesResponse, mockedCoordinatorsResponse } from '../api/fetches';
 import { activitiesUrl, coordinatorsUrl } from '../api/urls';
 import { SET_ACTIVITIES, SET_COORDINATORS } from '../store/actions';
 import { initialState } from '../store/reducer';
 import { getActivitiesThunk, getCoordinatorsThunk } from '../store/thunks';
+import { mockedActivitiesResponse, mockedCoordinatorsResponse } from '../__mocks__/fetches.mock';
 
 describe('Thunks', () => {
 
@@ -28,7 +28,7 @@ describe('Thunks', () => {
             expectedActions: [{ type: SET_ACTIVITIES, payload: mockedActivitiesResponse }],
         },
         {
-            name: 'should dispatch SET_COORDINATORS_ACTION',
+            name: 'should dispatch SET_COORDINATORS action',
             thunk: getCoordinatorsThunk,
             expectedActions: [{ type: SET_COORDINATORS, payload: mockedCoordinatorsResponse }],
         }
