@@ -1,12 +1,18 @@
 import fetchMock from 'fetch-mock';
+import thunk from 'redux-thunk';
+import configureStore from 'redux-mock-store';
 import { mockedActivitiesResponse, mockedCoordinatorsResponse } from '../api/fetches';
 import { activitiesUrl, coordinatorsUrl } from '../api/urls';
-import { SET_ACTIVITIES } from '../store/actions';
+import { SET_ACTIVITIES, SET_COORDINATORS } from '../store/actions';
+import { initialState } from '../store/reducer';
+import { getActivitiesThunk, getCoordinatorsThunk } from '../store/thunks';
 
-describe('thunk', () => {
+describe('Thunks', () => {
+
+    const mockStore = configureStore([thunk]);
 
     beforeEach(() => {
-        // fetchMock.mock(activitiesUrl, { status: 200, body: mockedActivitiesResponse });
+        fetchMock.mock(activitiesUrl, { status: 200, body: mockedActivitiesResponse });
         fetchMock.mock(coordinatorsUrl, { status: 200, body: mockedCoordinatorsResponse });
     });
 
@@ -15,14 +21,27 @@ describe('thunk', () => {
         fetchMock.restore();
     });
 
-    test('should load activities', async () => {
-        // const dispatch = jest.fn();
-        // const expectedAction = { type: SET_ACTIVITIES, payload: mockedActivitiesResponse };
-        
-        // fetchMock.get(activitiesUrl, mockedActivitiesResponse);
+    const thunksTestSuite = [
+        {
+            name: 'should dispatch SET_ACTIVITIES action',
+            thunk: getActivitiesThunk,
+            expectedActions: [{ type: SET_ACTIVITIES, payload: mockedActivitiesResponse }],
+        },
+        {
+            name: 'should dispatch SET_COORDINATORS_ACTION',
+            thunk: getCoordinatorsThunk,
+            expectedActions: [{ type: SET_COORDINATORS, payload: mockedCoordinatorsResponse }],
+        }
+    ];
 
-        // await getActivitiesThunk()(dispatch);
+    thunksTestSuite.forEach(({ name, thunk, expectedActions }) => {
+        test(name, () => {
+            const store = mockStore(initialState);
 
-        // expect(dispatch).toBeCalledWith(expectedAction);
-    });
+            return store.dispatch(thunk() as any).then(() => {
+                const actions = store.getActions();
+                expect(actions).toEqual(expectedActions);
+            });
+        });
+    }); 
 });
