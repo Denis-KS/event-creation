@@ -1,6 +1,6 @@
-import { ICoordinator } from "../models/coordinator.model";
-import { ICredentials } from "../models/credentials.model";
-import { serializeCoordinator } from "../store/selector-helpers";
+import { ICoordinator } from "../../models/coordinator.model";
+import { ICredentials } from "../../models/credentials.model";
+import { serializeCoordinator } from "../../store/selector-helpers";
 
 describe('Selector Helpers', () => {
     test('should return serialized coordinator', () => {

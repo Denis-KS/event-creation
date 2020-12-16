@@ -8,10 +8,10 @@ import {
     setCoordinatorsAction,
     SET_ACTIVITIES,
     SET_COORDINATORS
-} from '../store/actions';
-import { initialState } from '../store/reducer';
-import { mockedActivity } from '../__mocks__/events.mock';
-import { mockedActivitiesResponse, mockedCoordinatorsResponse } from '../__mocks__/fetches.mock';
+} from '../../store/actions';
+import { initialState } from '../../store/reducer';
+import { mockedActivity } from '../../__mocks__/events.mock';
+import { mockedActivitiesResponse, mockedCoordinatorsResponse } from '../../__mocks__/fetches.mock';
 
 describe('Actions', () => {
 

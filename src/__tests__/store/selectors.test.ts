@@ -1,7 +1,7 @@
-import { IStore } from "../models/store.model";
-import { getActiveUserIdSelector, getActivitiesSelector, getActivitiesWithDefaultSelector, getCoordinatorsSelector, getEventsArraySelector, getEventsSelector, getGroupedCoordinatorsSelector } from "../store/selectors";
-import { mockedEvent, mockedInitialEvents } from "../__mocks__/events.mock";
-import { coordinatorSelf, coordinatorsOthers, mockedActivitiesResponse, mockedCoordinatorsResponse } from "../__mocks__/fetches.mock";
+import { IStore } from "../../models/store.model";
+import { getActiveUserIdSelector, getActivitiesSelector, getCoordinatorsSelector, getEventsSelector, getEventsArraySelector, getActivitiesWithDefaultSelector, getGroupedCoordinatorsSelector } from "../../store/selectors";
+import { mockedInitialEvents, mockedEvent } from "../../__mocks__/events.mock";
+import { mockedActivitiesResponse, mockedCoordinatorsResponse, coordinatorSelf, coordinatorsOthers } from "../../__mocks__/fetches.mock";
 
 export const mockedState: IStore = {
     activeUserId: 0,

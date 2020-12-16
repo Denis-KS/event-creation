@@ -1,8 +1,7 @@
-import { IEvent } from "../models/event.model";
-import { IStore } from "../models/store.model";
-import { ADD_OR_UPDATE_EVENT, DELETE_EVENT, IBaseAction, SET_ACTIVITIES, SET_COORDINATORS } from "../store/actions";
-import { initialState, reducer } from "../store/reducer";
-import { mockedActivity, mockedCoordinator, mockedEvent, mockedEventsAfterDelete, mockedEventsAfterUpdate, mockedInitialEvents } from "../__mocks__/events.mock";
+import { IStore } from "../../models/store.model";
+import { IBaseAction, ADD_OR_UPDATE_EVENT, DELETE_EVENT, SET_ACTIVITIES, SET_COORDINATORS } from "../../store/actions";
+import { initialState, reducer } from "../../store/reducer";
+import { mockedEvent, mockedInitialEvents, mockedEventsAfterDelete, mockedEventsAfterUpdate, mockedActivity, mockedCoordinator } from "../../__mocks__/events.mock";
 
 describe('reducer', () => {
     test('should add an event to the list', () => {
