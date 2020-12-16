@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
-import { CreateUpdateEvent } from './pages/create-update-event';
+import { Header } from './components/Header/Header';
 import { EventOverview } from './pages/event-overview';
 import { Events } from './pages/events';
 
 export enum Routes {
   HOME = '/',
-  OVERVIEW = '/:id',
+  EVENT_OVERVIEW = '/:id',
   CREATE_EVENT = '/new-event',
   UPDATE_EVENT = '/update-event/:id',
 }
@@ -15,12 +15,10 @@ export enum Routes {
 function App() {
   return (    
     <div className="App">
-          <div data-testid="header"></div>
           <BrowserRouter>
-            <Route path="/" exact component={Events}/>
-            <Route path="/:eventId" component={EventOverview}/>
-            <Route path="/new-event" component={CreateUpdateEvent}/>
-            <Route path="/update-event/:eventId" component={CreateUpdateEvent}/>
+            <Header />
+            <Route path={Routes.HOME} exact component={Events}/>
+            <Route path={Routes.EVENT_OVERVIEW} exact component={EventOverview}/>
           </BrowserRouter>
     </div>
   );

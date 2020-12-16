@@ -19,14 +19,4 @@ describe('App', () => {
         renderWithRouter(<App />, { route: '/1' });
         expect(await screen.findByTestId('event-overview')).toBeInTheDocument();
     });
-
-    test('should render create/update event form on creating event', async () => {
-        renderWithRouter(<App />, { route: '/new-event' });
-        expect(await screen.findByTestId('create-update-event')).toBeInTheDocument();
-    });
-
-    test('should render create/update event form on updating event', async () => {
-        renderWithRouter(<App />, { route: '/update-event/1' });
-        expect(await screen.findByTestId('create-update-event')).toBeInTheDocument();
-    });
 });
