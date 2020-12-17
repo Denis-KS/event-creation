@@ -1,25 +1,25 @@
-import { getTargetFromPath } from "../../components/Header/header-helpers";
+import { getTitleFromUrl } from "../../components/Header/header-helpers";
 
-describe('getTargetFromUrl', () => {
-    test('should return "home" as target', () => {
-        expect(getTargetFromPath('/')).toBe('home');
+describe('getTitleFromUrl', () => {
+    test('should return "Events" as title on a home route', () => {
+        expect(getTitleFromUrl('/')).toBe('Events');
     });
 
-    test('should return "overview" as target', () => {
-        expect(getTargetFromPath('/1')).toBe('overview');
+    test('should return "Event Overview" as title on event overview route', () => {
+        expect(getTitleFromUrl('/1')).toBe('Event Overview');
     });
 
-    test('should return "create" as target', () => {
-        expect(getTargetFromPath('/new-event')).toBe('create');
+    test('should return "New Event" as title on creating new event route', () => {
+        expect(getTitleFromUrl('/new-event')).toBe('New Event');
     });
 
-    test('should return "update" as target', () => {
-        expect(getTargetFromPath('/update-event/1')).toBe('update');
+    test('should return "Edit Event" as title on updating event route', () => {
+        expect(getTitleFromUrl('/update-event/1')).toBe('Edit Event');
     });
 
-    test('should return "home" as target on unknown path', () => {
-        expect(getTargetFromPath('/unknown')).toBe('home');
-        expect(getTargetFromPath('/update')).toBe('home');
-        expect(getTargetFromPath('/update-event')).toBe('home');
+    test('should return "Events" as title on unknown route', () => {
+        expect(getTitleFromUrl('/unknown')).toBe('Events');
+        expect(getTitleFromUrl('/update')).toBe('Events');
+        expect(getTitleFromUrl('/update-event')).toBe('Events');
     });
 });

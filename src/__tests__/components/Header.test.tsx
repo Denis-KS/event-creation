@@ -29,9 +29,4 @@ describe('Header', () => {
         renderWithRouter(<Header />, { route: '/update-event/1' });
         expect(await screen.findByText('Edit Event')).toBeInTheDocument();
     });
-
-    // test('should', async () => {});
-
-    // test('should', async () => {});
-
 });
