@@ -1,6 +1,8 @@
+import { applyMiddleware, createStore } from "redux";
+import thunk from "redux-thunk";
 import { IEvent } from "../models/event.model";
 import { IStore } from "../models/store.model";
-import { ADD_OR_UPDATE_EVENT, DELETE_EVENT, IBaseAction, SET_ACTIVITIES, SET_COORDINATORS } from "./actions";
+import { ADD_OR_UPDATE_EVENT, DELETE_EVENT, IBaseAction, SET_ACTIVITIES, SET_COORDINATORS, SET_EVENTS } from "./actions";
 
 export const initialState: IStore = {
     activeUserId: 0,
@@ -9,8 +11,12 @@ export const initialState: IStore = {
     coordinators: [],
 };
 
-export const reducer = (state: IStore, { type, payload }: IBaseAction) => {
+export const reducer = (state: IStore = initialState, { type, payload }: IBaseAction) => {
     switch (type) {
+        case SET_EVENTS: {
+            const events = new Map<number, IEvent>(payload.map((event: IEvent) => [event.id, event]));
+            return { ...state, events };
+        }
         case ADD_OR_UPDATE_EVENT: {
             const events = state.events;
             events.set(payload.id, payload);
@@ -32,3 +38,5 @@ export const reducer = (state: IStore, { type, payload }: IBaseAction) => {
         default: return state;
     }
 }
+
+export const store = createStore(reducer, applyMiddleware(thunk));

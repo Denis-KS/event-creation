@@ -18,6 +18,8 @@ export const mockedEvent: IEvent = {
     },
 };
 
+export const mockedEventsArray: IEvent[] = [mockedEvent, { ...mockedEvent, id: 1 }, { ...mockedEvent, id: 2 }];
+
 export const mockedInitialEvents: Map<number, IEvent> = new Map([
     [0, mockedEvent],
     [1, { ...mockedEvent, id: 1 }],

@@ -1,17 +1,18 @@
 import fetchMock from 'fetch-mock';
 import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
-import { activitiesUrl, coordinatorsUrl } from '../../api/urls';
-import { SET_ACTIVITIES, SET_COORDINATORS } from '../../store/actions';
+import { activitiesUrl, coordinatorsUrl, eventsUrl } from '../../api/urls';
+import { SET_ACTIVITIES, SET_COORDINATORS, SET_EVENTS } from '../../store/actions';
 import { initialState } from '../../store/reducer';
-import { getActivitiesThunk, getCoordinatorsThunk } from '../../store/thunks';
-import { mockedActivitiesResponse, mockedCoordinatorsResponse } from '../../__mocks__/fetches.mock';
+import { getActivitiesThunk, getCoordinatorsThunk, getEventsThunk } from '../../store/thunks';
+import { mockedActivitiesResponse, mockedCoordinatorsResponse, mockedEventsResponse } from '../../__mocks__/fetches.mock';
 
 describe('Thunks', () => {
 
     const mockStore = configureStore([thunk]);
 
     beforeEach(() => {
+        fetchMock.mock(eventsUrl, { status: 200, body: mockedEventsResponse });
         fetchMock.mock(activitiesUrl, { status: 200, body: mockedActivitiesResponse });
         fetchMock.mock(coordinatorsUrl, { status: 200, body: mockedCoordinatorsResponse });
     });
@@ -22,6 +23,11 @@ describe('Thunks', () => {
     });
 
     const thunksTestSuite = [
+        {
+            name: 'should dispatch SET_EVENTS action',
+            thunk: getEventsThunk,
+            expectedActions: [{ type: SET_EVENTS, payload: mockedEventsResponse }],
+        },
         {
             name: 'should dispatch SET_ACTIVITIES action',
             thunk: getActivitiesThunk,

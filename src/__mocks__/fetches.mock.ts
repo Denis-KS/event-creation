@@ -1,6 +1,40 @@
 import { IActivity } from "../models/activity.model";
 import { ICoordinator } from "../models/coordinator.model";
 import { ICredentials } from "../models/credentials.model";
+import { IEvent } from "../models/event.model";
+
+export const mockedEventsResponse: IEvent[] = [
+  {
+    id: 0,
+    title: 'Test Event',
+    description: '',
+    category_id: 0,
+    paid_event: true,
+    event_fee: 100,
+    reward: 50,
+    date: '',
+    duration: 3,
+    coordinator: {
+        email: 'test@test.com',                                                      
+        id: '0',
+    },
+  },
+  {
+    id: 1,
+    title: 'Test Event 2',
+    description: '',
+    category_id: 0,
+    paid_event: false,
+    event_fee: 0,
+    reward: 0,
+    date: '',
+    duration: 0,
+    coordinator: {
+        email: 'test@test.com',                                                      
+        id: 'test',
+    },
+  }
+]
 
 export const mockedActivitiesResponse: IActivity[] = [
     { "id": 0, "name": "Cycling" },

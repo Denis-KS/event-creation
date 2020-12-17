@@ -1,4 +1,4 @@
-import { getTitleFromUrl } from "../../components/Header/header-helpers";
+import { getTitleFromUrl } from "../../../components/Header/header-helpers";
 
 describe('getTitleFromUrl', () => {
     test('should return "Events" as title on a home route', () => {

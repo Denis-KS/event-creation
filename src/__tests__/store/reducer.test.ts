@@ -1,9 +1,17 @@
 import { IStore } from "../../models/store.model";
-import { IBaseAction, ADD_OR_UPDATE_EVENT, DELETE_EVENT, SET_ACTIVITIES, SET_COORDINATORS } from "../../store/actions";
+import { IBaseAction, ADD_OR_UPDATE_EVENT, DELETE_EVENT, SET_ACTIVITIES, SET_COORDINATORS, SET_EVENTS } from "../../store/actions";
 import { initialState, reducer } from "../../store/reducer";
-import { mockedEvent, mockedInitialEvents, mockedEventsAfterDelete, mockedEventsAfterUpdate, mockedActivity, mockedCoordinator } from "../../__mocks__/events.mock";
+import { mockedEvent, mockedInitialEvents, mockedEventsAfterDelete, mockedEventsAfterUpdate, mockedActivity, mockedCoordinator, mockedEventsArray } from "../../__mocks__/events.mock";
 
 describe('reducer', () => {
+
+    test('should set the list of events', () => {
+        const expectedResult: IStore = { ...initialState, events: mockedInitialEvents };
+        const action: IBaseAction = { type: SET_EVENTS, payload: mockedEventsArray };
+
+        expect(reducer(initialState, action)).toEqual(expectedResult);
+    });
+
     test('should add an event to the list', () => {
         const expectedResult: IStore = { ...initialState, events: new Map([[0, mockedEvent]]) };
         const action: IBaseAction = { type: ADD_OR_UPDATE_EVENT, payload: mockedEvent };

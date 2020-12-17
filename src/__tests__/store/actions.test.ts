@@ -6,11 +6,13 @@ import {
     DELETE_EVENT,
     setActivitiesAction,
     setCoordinatorsAction,
+    setEventsAction,
     SET_ACTIVITIES,
-    SET_COORDINATORS
+    SET_COORDINATORS,
+    SET_EVENTS
 } from '../../store/actions';
 import { initialState } from '../../store/reducer';
-import { mockedActivity } from '../../__mocks__/events.mock';
+import { mockedActivity, mockedEventsArray } from '../../__mocks__/events.mock';
 import { mockedActivitiesResponse, mockedCoordinatorsResponse } from '../../__mocks__/fetches.mock';
 
 describe('Actions', () => {
@@ -18,6 +20,12 @@ describe('Actions', () => {
     const mockStore = configureStore([]);
 
     const actionsTestSuite = [
+        {
+            action: setEventsAction,
+            actionType: SET_EVENTS,
+            payload: mockedEventsArray,
+            expectedActions: [{type: SET_EVENTS, payload: mockedEventsArray}],
+        },
         {
             action: addOrUpdateEventAction,
             actionType: ADD_OR_UPDATE_EVENT,

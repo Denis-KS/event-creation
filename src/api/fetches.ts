@@ -1,7 +1,9 @@
-import { IActivity } from "../models/activity.model";
-import { ICoordinator } from "../models/coordinator.model";
-import { mockedActivitiesResponse, mockedCoordinatorsResponse } from "../__mocks__/fetches.mock";
-import { activitiesUrl, coordinatorsUrl } from "./urls";
+import { mockedActivitiesResponse, mockedCoordinatorsResponse, mockedEventsResponse } from "../__mocks__/fetches.mock";
+import { activitiesUrl, coordinatorsUrl, eventsUrl } from "./urls";
+
+export function fetchEvents() {
+    return fetch(eventsUrl).then(() => mockedEventsResponse);
+};
 
 export function fetchActivities() {
     return fetch(activitiesUrl).then(() => mockedActivitiesResponse);

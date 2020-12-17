@@ -1,5 +1,8 @@
-import { fetchActivities, fetchCoordinators } from "../api/fetches";
-import { Dispatch, setActivitiesAction, setCoordinatorsAction } from "./actions";
+import { fetchActivities, fetchCoordinators, fetchEvents } from "../api/fetches";
+import { Dispatch, setActivitiesAction, setCoordinatorsAction, setEventsAction } from "./actions";
+
+export const getEventsThunk = () => (dispatch: Dispatch) => fetchEvents()
+ .then(result => dispatch(setEventsAction(result)));
 
 export const getActivitiesThunk = () => (dispatch: Dispatch) => fetchActivities()
     .then(result => dispatch(setActivitiesAction(result)));

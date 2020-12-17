@@ -3,7 +3,9 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
 import { Header } from './components/Header/Header';
 import { EventOverview } from './pages/event-overview';
-import { Events } from './pages/events';
+import { Events } from './components/Events/Events';
+import { Provider } from 'react-redux';
+import { store } from './store/reducer';
 
 export enum Routes {
   HOME = '/',
@@ -13,14 +15,16 @@ export enum Routes {
 }
 
 function App() {
-  return (    
-    <div className="App">
-          <BrowserRouter>
-            <Header />
-            <Route path={Routes.HOME} exact component={Events}/>
-            <Route path={Routes.EVENT_OVERVIEW} exact component={EventOverview}/>
-          </BrowserRouter>
-    </div>
+  return (  
+    <Provider store={store}>
+      <div className="App">
+        <BrowserRouter>
+          <Header />
+          <Route path={Routes.HOME} exact component={Events}/>
+          <Route path={Routes.EVENT_OVERVIEW} exact component={EventOverview}/>
+        </BrowserRouter>
+      </div>
+    </Provider>  
   );
 }
 
