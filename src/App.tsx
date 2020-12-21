@@ -6,6 +6,7 @@ import { EventOverview } from './pages/event-overview';
 import { Events } from './components/Events/Events';
 import { Provider } from 'react-redux';
 import { store } from './store/reducer';
+import { CreateUpdateEvent } from './pages/create-update-event';
 
 export enum Routes {
   HOME = '/',
@@ -21,6 +22,7 @@ function App() {
         <BrowserRouter>
           <Header />
           <Route path={Routes.HOME} exact component={Events}/>
+          <Route path={Routes.CREATE_EVENT} component={CreateUpdateEvent}/>
           <Route path={Routes.EVENT_OVERVIEW} exact component={EventOverview}/>
         </BrowserRouter>
       </div>

@@ -19,4 +19,9 @@ describe('App', () => {
         renderWithRouter(<App />, { route: '/1' });
         expect(await screen.findByTestId('event-overview')).toBeInTheDocument();
     });
+
+    test('should render event creation form', async () => {
+        renderWithRouter(<App />, { route: '/new-event' });
+        expect(await screen.findByTestId('create-update-event')).toBeInTheDocument();
+    });
 });
