@@ -1,11 +1,10 @@
 import configureStore from 'redux-mock-store';
 import fetchMock from 'fetch-mock';
-import { screen, fireEvent } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import React from "react";
 import { mockedEventsArray, mockedInitialEvents } from "../../../__mocks__/events.mock";
 import { IStore } from "../../../models/store.model";
 import { Provider } from 'react-redux';
-import { Events } from '../../../components/Events/Events';
 import { initialState } from '../../../store/reducer';
 import thunk from 'redux-thunk';
 import { renderWithRouter } from '../../../__mocks__/utils';
@@ -59,5 +58,9 @@ describe('Events', () => {
         userEvent.click(screen.getByText('Create Event'), {button: 0});
 
         expect(screen.getByTestId('create-update-event')).toBeInTheDocument();
+    });
+
+    xtest('should search event', async () => {
+
     });
 });
