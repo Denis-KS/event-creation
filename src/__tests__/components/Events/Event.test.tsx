@@ -120,6 +120,14 @@ describe('Event', () => {
         expect(element).toHaveTextContent('test@test.com');
     });
 
+    test('should display event date and time', () => {
+        setupComponent(mockedProps);
+
+        const element = screen.getByTestId('event-date');
+        expect(element).toBeInTheDocument();
+        expect(element).toHaveTextContent('0000-00-00 00:00');
+    });
+
     test('should display duration', () => {
         setupComponent(mockedProps);
 
