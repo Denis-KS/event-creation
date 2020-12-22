@@ -1,4 +1,3 @@
-import fetchMock from 'fetch-mock';
 import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 import { activitiesUrl, coordinatorsUrl, eventsUrl } from '../../api/urls';
@@ -6,20 +5,23 @@ import { SET_ACTIVITIES, SET_COORDINATORS, SET_EVENTS } from '../../store/action
 import { initialState } from '../../store/reducer';
 import { getActivitiesThunk, getCoordinatorsThunk, getEventsThunk } from '../../store/thunks';
 import { mockedActivitiesResponse, mockedCoordinatorsResponse, mockedEventsResponse } from '../../__mocks__/fetches.mock';
+import { createAxiosMock } from '../../__mocks__/utils';
+
+const mock = createAxiosMock();
 
 describe('Thunks', () => {
 
     const mockStore = configureStore([thunk]);
 
     beforeEach(() => {
-        fetchMock.mock(eventsUrl, { status: 200, body: mockedEventsResponse });
-        fetchMock.mock(activitiesUrl, { status: 200, body: mockedActivitiesResponse });
-        fetchMock.mock(coordinatorsUrl, { status: 200, body: mockedCoordinatorsResponse });
+        mock.onGet(eventsUrl).reply(200, mockedEventsResponse);
+        mock.onGet(activitiesUrl).reply(200, mockedActivitiesResponse);
+        mock.onGet(coordinatorsUrl).reply(200, mockedCoordinatorsResponse);
     });
 
     afterEach(() => {
-        fetchMock.reset();
-        fetchMock.restore();
+        // mock.reset();
+        // mock.restore();
     });
 
     const thunksTestSuite = [

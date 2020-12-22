@@ -1,14 +1,15 @@
 import { mockedActivitiesResponse, mockedCoordinatorsResponse, mockedEventsResponse } from "../__mocks__/fetches.mock";
 import { activitiesUrl, coordinatorsUrl, eventsUrl } from "./urls";
+import axios from 'axios';
 
 export function fetchEvents() {
-    return fetch(eventsUrl).then(() => mockedEventsResponse);
+    return axios.get(eventsUrl).then(() => mockedEventsResponse);
 };
 
 export function fetchActivities() {
-    return fetch(activitiesUrl).then(() => mockedActivitiesResponse);
+    return axios.get(activitiesUrl).then(() => mockedActivitiesResponse);
 };
 
 export function fetchCoordinators() {
-    return fetch(coordinatorsUrl).then(() => mockedCoordinatorsResponse);
+    return axios.get(coordinatorsUrl).then(() => mockedCoordinatorsResponse);
 };

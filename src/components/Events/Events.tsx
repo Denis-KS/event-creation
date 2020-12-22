@@ -5,6 +5,7 @@ import { getEventsThunk } from "../../store/thunks";
 import { isEmpty } from 'lodash';
 import { useHistory } from "react-router";
 import { Routes } from "../../App";
+import { EventsList } from "./EventsList";
 
 export const Events: React.FC = () => {
     const dispatch = useDispatch();
@@ -19,12 +20,14 @@ export const Events: React.FC = () => {
         dispatch(getEventsThunk());
     }, [dispatch]);
 
+    console.log(events);
+
     return(
         <div data-testid="events">
             <input data-testid="search-input" />
             <button onClick={handleCreateEventClick}>Create Event</button>
             {!isEmpty(events) 
-                ? <div data-testid="events-list"></div>
+                ? <EventsList events={events} />
                 : <div>There are no events yet</div>
             }
         </div>

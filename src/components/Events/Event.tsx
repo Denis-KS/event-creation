@@ -21,7 +21,6 @@ export const Event: React.FC<IEventProps> = ({ event, category, coordinator }) =
             <span data-testid="event-coordinator">Coordinator: {coordinator}</span>
             <span data-testid="event-coordinator-email">Email: {event.coordinator.email}</span>
             <span data-testid="event-duration">Duration: {duration} hour(s)</span>
-
         </div>
     );
 }
