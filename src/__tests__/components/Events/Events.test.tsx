@@ -30,7 +30,7 @@ describe('Events', () => {
        
     });
 
-    test.only('should render placeholder when no events are loaded', async () => {
+    test('should render placeholder when no events are loaded', async () => {
         mock.onGet(eventsUrl).reply(200, []);
         
         setupComponent(initialState);

@@ -19,11 +19,6 @@ describe('Thunks', () => {
         mock.onGet(coordinatorsUrl).reply(200, mockedCoordinatorsResponse);
     });
 
-    afterEach(() => {
-        // mock.reset();
-        // mock.restore();
-    });
-
     const thunksTestSuite = [
         {
             name: 'should dispatch SET_EVENTS action',
