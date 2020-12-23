@@ -1,6 +1,32 @@
 import React from "react";
 import { useLocation } from "react-router"
+import styled from "styled-components";
+import { AppContentBox } from "../styled/Box/AppContentBox";
+import { Box } from "../styled/Box/Box";
 import { getTitleFromUrl } from "./header-helpers";
+
+
+const HeaderWrapper = styled(Box)`
+    position: relative;
+    background-color: #35588e;
+    max-width: 100%;
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        background-color: #1c3b68;
+    }
+`;
+
+const HeaderText = styled.h3`
+    margin: 0;
+    padding: 10px 0 5px 0;
+    color: #fff;
+    font-size: 26px;
+`;
 
 export const Header: React.FC = () => {
     const { pathname } = useLocation();
@@ -8,6 +34,10 @@ export const Header: React.FC = () => {
     const headerText = getTitleFromUrl(pathname);
 
     return (
-        <div data-testid="header">{headerText}</div>
+        <HeaderWrapper backgroundColor="#35588e">
+            <AppContentBox>
+                <HeaderText data-testid="header">{headerText}</HeaderText>
+            </AppContentBox>
+        </HeaderWrapper>
     );
 }

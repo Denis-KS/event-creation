@@ -20,8 +20,6 @@ export const Events: React.FC = () => {
         dispatch(getEventsThunk());
     }, [dispatch]);
 
-    console.log(events);
-
     return(
         <div data-testid="events">
             <input data-testid="search-input" />
