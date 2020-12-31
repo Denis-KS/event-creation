@@ -9,7 +9,7 @@ interface IEventDisplayPropertyProps {
 }
 
 export const EventDisplayProperty: React.FC<IEventDisplayPropertyProps> = ({ title, value, testId }) => (
-    <FlexBox data-testId={testId} justifyContent="space-between">
+    <FlexBox data-testid={testId} justifyContent="space-between">
         <Text>{title}:</Text>
         <Text>{value}</Text>
     </FlexBox>

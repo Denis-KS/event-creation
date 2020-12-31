@@ -5,10 +5,11 @@ import { ICredentials } from "../models/credentials.model";
 import { IEvent } from "../models/event.model";
 import { IGroupedDropdown } from "../models/inputs.model";
 import { IStore } from "../models/store.model";
+import { mockedActivitiesMap } from "../__mocks__/events.mock";
 import { serializeCoordinator } from "./selector-helpers";
 
 export const getActiveUserIdSelector = (state: IStore): number => state.activeUserId;
-export const getActivitiesSelector = (state: IStore): IActivity[] => state.activities;
+export const getActivitiesSelector = (state: IStore): Map<string | number, IActivity> => state.activities;
 export const getCoordinatorsSelector = (state: IStore): ICoordinator[] => state.coordinators;
 export const getEventsSelector = (state: IStore): Map<number, IEvent> => state.events;
 
@@ -17,12 +18,9 @@ export const getEventsArraySelector = createSelector(
     (events: Map<number, IEvent>): IEvent[] => Array.from(events.values())
 );
 
-export const getActivitiesWithDefaultSelector = createSelector(
-    getActivitiesSelector,
-    (activities: IActivity[]) => {
-        const defaultOption: IActivity = { id: 'unselected', name: 'Select Category' };
-        return [defaultOption, ...activities];
-    }
+export const getActivitiesListSelector = createSelector(
+    getActivitiesSelector, 
+    (activitiesMap: Map<string | number, IActivity>) => Array.from(activitiesMap.values())
 );
 
 export const getGroupedCoordinatorsSelector = createSelector(

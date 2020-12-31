@@ -2,13 +2,14 @@ import { mockedActivitiesResponse, mockedCoordinatorsResponse, mockedEventsRespo
 import { activitiesUrl, coordinatorsUrl, eventsUrl } from "./urls";
 import axios from 'axios';
 import { IEvent } from "../models/event.model";
+import { IActivity } from "../models/activity.model";
 
 export function fetchEvents() {
     return axios.get<IEvent[]>(eventsUrl).catch(() => Promise.resolve(mockedEventsResponse));
 };
 
 export function fetchActivities() {
-    return axios.get(activitiesUrl).then(() => mockedActivitiesResponse);
+    return axios.get<IActivity>(activitiesUrl).catch(() => Promise.resolve(mockedActivitiesResponse));
 };
 
 export function fetchCoordinators() {

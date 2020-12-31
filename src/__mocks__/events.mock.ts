@@ -39,4 +39,21 @@ export const mockedEventsAfterUpdate: Map<number, IEvent> = new Map([
 
 export const mockedActivity: IActivity = { id: 0, name: 'Test Activity' };
 
+export const mockedActivitiesArray: IActivity[] = [
+    { id: 0, name: 'Test Activity 1' },
+    { id: 1, name: 'Test Activity 2' },
+];
+
+export const mockedActivitiesArrayWithDefault: IActivity[] = [
+    { id: 'unselected', name: 'Select Category' },
+    { id: 0, name: 'Test Activity 1' },
+    { id: 1, name: 'Test Activity 2' },
+];
+
+export const mockedActivitiesMap: Map<number | string, IActivity> = new Map<number | string, IActivity>([
+    ['unselected', {id: 'unselected', name: 'Select Category'}],
+    [0, { id: 0, name: 'Test Activity 1' }],
+    [1, { id: 1, name: 'Test Activity 2' }],
+]); 
+
 export const mockedCoordinator: ICoordinator = { id: 0, name: 'Test', lastname: 'Coordinator',  email: 'test@test.test' };

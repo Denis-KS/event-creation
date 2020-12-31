@@ -12,8 +12,8 @@ import {
     SET_EVENTS
 } from '../../store/actions';
 import { initialState } from '../../store/reducer';
-import { mockedActivity, mockedEventsArray } from '../../__mocks__/events.mock';
-import { mockedActivitiesResponse, mockedCoordinatorsResponse } from '../../__mocks__/fetches.mock';
+import { mockedActivitiesArray, mockedEvent, mockedEventsArray } from '../../__mocks__/events.mock';
+import { mockedCoordinatorsResponse } from '../../__mocks__/fetches.mock';
 
 describe('Actions', () => {
 
@@ -29,8 +29,8 @@ describe('Actions', () => {
         {
             action: addOrUpdateEventAction,
             actionType: ADD_OR_UPDATE_EVENT,
-            payload: mockedActivity,
-            expectedActions: [{ type: ADD_OR_UPDATE_EVENT, payload: mockedActivity }],
+            payload: mockedEvent,
+            expectedActions: [{ type: ADD_OR_UPDATE_EVENT, payload: mockedEvent }],
         },
         {
             action: deleteEventAction,
@@ -41,8 +41,8 @@ describe('Actions', () => {
         {
             action: setActivitiesAction,
             actionType: SET_ACTIVITIES,
-            payload: mockedActivitiesResponse,
-            expectedActions: [{ type: SET_ACTIVITIES, payload: mockedActivitiesResponse }],
+            payload: mockedActivitiesArray,
+            expectedActions: [{ type: SET_ACTIVITIES, payload: mockedActivitiesArray }],
         },
         {
             action: setCoordinatorsAction,

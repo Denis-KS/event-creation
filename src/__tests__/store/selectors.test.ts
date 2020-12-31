@@ -1,11 +1,11 @@
 import { IStore } from "../../models/store.model";
-import { getActiveUserIdSelector, getActivitiesSelector, getCoordinatorsSelector, getEventsSelector, getEventsArraySelector, getActivitiesWithDefaultSelector, getGroupedCoordinatorsSelector } from "../../store/selectors";
-import { mockedInitialEvents, mockedEvent } from "../../__mocks__/events.mock";
-import { mockedActivitiesResponse, mockedCoordinatorsResponse, coordinatorSelf, coordinatorsOthers } from "../../__mocks__/fetches.mock";
+import { getActiveUserIdSelector, getActivitiesSelector, getCoordinatorsSelector, getEventsSelector, getEventsArraySelector, getGroupedCoordinatorsSelector, getActivitiesListSelector } from "../../store/selectors";
+import { mockedInitialEvents, mockedEvent, mockedActivitiesMap, mockedActivitiesArrayWithDefault } from "../../__mocks__/events.mock";
+import { mockedCoordinatorsResponse, coordinatorSelf, coordinatorsOthers } from "../../__mocks__/fetches.mock";
 
 export const mockedState: IStore = {
     activeUserId: 0,
-    activities: mockedActivitiesResponse,
+    activities: mockedActivitiesMap,
     coordinators: mockedCoordinatorsResponse,
     events: mockedInitialEvents,
 };
@@ -17,7 +17,11 @@ describe('Selectors', () => {
     });
 
     test('should get activities', () => {
-        expect(getActivitiesSelector(mockedState)).toBe(mockedActivitiesResponse);
+        expect(getActivitiesSelector(mockedState)).toEqual(mockedActivitiesMap);
+    });
+
+    test('should get activities as array', () => {
+        expect(getActivitiesListSelector(mockedState)).toEqual(mockedActivitiesArrayWithDefault);
     });
 
     test('should get coordinators', () => {
@@ -31,11 +35,6 @@ describe('Selectors', () => {
     test('should get events array', () => {
         const expectedResult = [mockedEvent, {...mockedEvent, id: 1}, {...mockedEvent, id: 2}];
         expect(getEventsArraySelector.resultFunc(mockedInitialEvents)).toEqual(expectedResult);
-    });
-
-    test('should get activities with default option', () => {
-        const expectedResult = [{ id: 'unselected', name: 'Select Category' }, ...mockedActivitiesResponse];
-        expect(getActivitiesWithDefaultSelector.resultFunc(mockedActivitiesResponse)).toEqual(expectedResult);
     });
 
     test('should get grouped coordinators', () => {

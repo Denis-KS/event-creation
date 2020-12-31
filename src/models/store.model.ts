@@ -6,5 +6,5 @@ export interface IStore {
     activeUserId: number;
     events: Map<number, IEvent>;
     coordinators: ICoordinator[];
-    activities: IActivity[];
+    activities: Map<number | string, IActivity>;
 }

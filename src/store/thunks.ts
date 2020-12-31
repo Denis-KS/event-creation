@@ -5,7 +5,7 @@ export const getEventsThunk = () => (dispatch: Dispatch) => fetchEvents()
     .then(result => dispatch(setEventsAction('data' in result ? result.data : result)));
 
 export const getActivitiesThunk = () => (dispatch: Dispatch) => fetchActivities()
-    .then(result => dispatch(setActivitiesAction(result)));
+    .then(result => dispatch(setActivitiesAction('data' in result ? (result.data as any) : result)));
 
 export const getCoordinatorsThunk = () => (dispatch: Dispatch) => fetchCoordinators()
     .then(result => dispatch(setCoordinatorsAction(result)));
