@@ -7,7 +7,7 @@ export const mockedEventsResponse: IEvent[] = [
   {
     id: 0,
     title: 'Test Event',
-    description: '',
+    description: 'Short description to simple test',
     category_id: 0,
     paid_event: true,
     event_fee: 100,
@@ -22,7 +22,7 @@ export const mockedEventsResponse: IEvent[] = [
   {
     id: 1,
     title: 'Test Event 2',
-    description: '',
+    description: 'Very long description to check multilining Very long description to check multilining Very long description to check multilining Very long d',
     category_id: 0,
     paid_event: false,
     event_fee: 0,

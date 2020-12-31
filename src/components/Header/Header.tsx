@@ -7,6 +7,7 @@ import { getTitleFromUrl } from "./header-helpers";
 
 
 const HeaderWrapper = styled(Box)`
+    margin: 0 0 20px 0;
     position: relative;
     background-color: #35588e;
     max-width: 100%;

@@ -6,6 +6,7 @@ import { isEmpty } from 'lodash';
 import { useHistory } from "react-router";
 import { Routes } from "../../App";
 import { EventsList } from "./EventsList";
+import { FlexBox } from "../styled/Box/FlexBox";
 
 export const Events: React.FC = () => {
     const dispatch = useDispatch();
@@ -22,8 +23,11 @@ export const Events: React.FC = () => {
 
     return(
         <div data-testid="events">
-            <input data-testid="search-input" />
-            <button onClick={handleCreateEventClick}>Create Event</button>
+            <FlexBox justifyContent="space-between" margin="0 0 20px 0">
+                <input data-testid="search-input" />
+                <button onClick={handleCreateEventClick}>Create Event</button>
+            </FlexBox>
+            
             {!isEmpty(events) 
                 ? <EventsList events={events} />
                 : <div>There are no events yet</div>

@@ -7,7 +7,7 @@ interface IFlexBoxProps {
     flexDirection?: string;
 }
 
-const FlexBox = styled(Box)<IFlexBoxProps>`
+export const FlexBox = styled(Box)<IFlexBoxProps>`
     display: flex;
     flex-direction: ${props => props.flexDirection || 'initial'};
     justify-content: ${props => props.justifyContent || 'initial'};
