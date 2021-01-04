@@ -7,8 +7,5 @@ export interface IStore {
     events: Map<number, IEvent>;
     coordinators: Map<number, ICoordinator>;
     activities: Map<number | string, IActivity>;
-}
-
-export interface IFiltersStoreState {
     searchQuery: string;
 }

@@ -4,7 +4,7 @@ import { IActivity } from "../models/activity.model";
 import { ICoordinator, ICoordinatorResponse } from "../models/coordinator.model";
 import { IEvent } from "../models/event.model";
 import { IStore } from "../models/store.model";
-import { ADD_OR_UPDATE_EVENT, DELETE_EVENT, IBaseAction, SET_ACTIVITIES, SET_COORDINATORS, SET_EVENTS } from "./actions";
+import { ADD_OR_UPDATE_EVENT, DELETE_EVENT, IBaseAction, SET_ACTIVITIES, SET_COORDINATORS, SET_EVENTS, SET_SEARCH_QUERY } from "./actions";
 import { serializeCoordinatorFullName } from "./selector-helpers";
 
 export const initialState: IStore = {
@@ -12,6 +12,8 @@ export const initialState: IStore = {
     events: new Map<number, IEvent>(),
     activities: new Map<string | number, IActivity>(),
     coordinators: new Map<number, ICoordinator>(),
+    searchQuery: '',
+    
 };
 
 export const reducer = (state: IStore = initialState, { type, payload }: IBaseAction) => {
@@ -40,6 +42,9 @@ export const reducer = (state: IStore = initialState, { type, payload }: IBaseAc
         case SET_COORDINATORS: {
             const coordinatorsMap = new Map<number, ICoordinator>(payload.map((coordinator: ICoordinatorResponse) => [coordinator.id, serializeCoordinatorFullName(coordinator)]));
             return { ...state, coordinators: coordinatorsMap };
+        }
+        case SET_SEARCH_QUERY: {
+            return { ...state, searchQuery: payload }
         }
         default: return state;
     }

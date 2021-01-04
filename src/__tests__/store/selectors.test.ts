@@ -7,7 +7,8 @@ import {
     getEventsArraySelector,
     getGroupedCoordinatorsSelector,
     getActivitiesListSelector,
-    getCoordinatorsListSelector
+    getCoordinatorsListSelector,
+    getSearchQuerySelector
 } from "../../store/selectors";
 import {
     mockedInitialEvents,
@@ -25,6 +26,7 @@ export const mockedState: IStore = {
     activities: mockedActivitiesMap,
     coordinators: mockedCoordinatorsMap,
     events: mockedInitialEvents,
+    searchQuery: '',
 };
 
 describe('Selectors', () => {
@@ -65,6 +67,10 @@ describe('Selectors', () => {
         ];
 
         expect(getGroupedCoordinatorsSelector.resultFunc(mockedSerializedCoordinatorsArray, 0)).toEqual(expectedResult);
+    });
+
+    test('should get search query', () => {
+        expect(getSearchQuerySelector({ ...mockedState, searchQuery: 'test' })).toBe('test');
     });
 
 });

@@ -11,6 +11,7 @@ export const getActiveUserIdSelector = (state: IStore): number => state.activeUs
 export const getActivitiesSelector = (state: IStore): Map<string | number, IActivity> => state.activities;
 export const getCoordinatorsSelector = (state: IStore): Map<number, ICoordinator> => state.coordinators;
 export const getEventsSelector = (state: IStore): Map<number, IEvent> => state.events;
+export const getSearchQuerySelector = (state: IStore): string => state.searchQuery;
 
 export const getEventsArraySelector = createSelector(
     getEventsSelector,

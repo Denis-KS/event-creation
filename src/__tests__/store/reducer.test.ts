@@ -1,9 +1,15 @@
 import { IStore } from "../../models/store.model";
-import { IBaseAction, ADD_OR_UPDATE_EVENT, DELETE_EVENT, SET_ACTIVITIES, SET_COORDINATORS, SET_EVENTS } from "../../store/actions";
+import { IBaseAction, ADD_OR_UPDATE_EVENT, DELETE_EVENT, SET_ACTIVITIES, SET_COORDINATORS, SET_EVENTS, SET_SEARCH_QUERY } from "../../store/actions";
 import { initialState, reducer } from "../../store/reducer";
 import { mockedEvent, mockedInitialEvents, mockedEventsAfterDelete, mockedEventsAfterUpdate, mockedEventsArray, mockedActivitiesArray, mockedActivitiesMap, mockedCoordinatorsArray, mockedCoordinatorsMap } from "../../__mocks__/events.mock";
 
 describe('reducer', () => {
+
+    test('should return unchanged state on unknown action', () => {
+        const action : IBaseAction = { type: 'unknown', payload: null }
+
+        expect(reducer(initialState, action)).toEqual(initialState);
+    });
 
     test('should set the list of events', () => {
         const expectedResult: IStore = { ...initialState, events: mockedInitialEvents };
@@ -47,6 +53,13 @@ describe('reducer', () => {
         const coordinators = mockedCoordinatorsArray
         const expectedResult: IStore = { ...initialState, coordinators: mockedCoordinatorsMap };
         const action: IBaseAction = { type: SET_COORDINATORS, payload: coordinators };
+
+        expect(reducer(initialState, action)).toEqual(expectedResult);
+    });
+
+    test('should set search query', () => {
+        const expectedResult: IStore = { ...initialState, searchQuery: 'test' };
+        const action: IBaseAction = { type: SET_SEARCH_QUERY, payload: 'test' };
 
         expect(reducer(initialState, action)).toEqual(expectedResult);
     });

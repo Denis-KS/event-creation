@@ -36,6 +36,10 @@ interface ISetCoordinatorsAction extends IBaseAction {
     payload: ICoordinator[];
 }
 
+interface ISetSearchQueryAction extends IBaseAction {
+    payload: string;
+}
+
 export const setEventsAction = (events: IEvent[]): ISetEventsAction => ({
     type: SET_EVENTS,
     payload: events,
@@ -61,3 +65,12 @@ export const setCoordinatorsAction = (coordinators: ICoordinator[]): ISetCoordin
     payload: coordinators,
 });
 
+export const setSearchQueryAction = (query: string): ISetSearchQueryAction => ({
+    type: SET_SEARCH_QUERY,
+    payload: query
+});
+
+export const eraseSearchQueryAction = (): ISetSearchQueryAction => ({
+    type: SET_SEARCH_QUERY,
+    payload: ''
+});
