@@ -4,9 +4,8 @@ import { activitiesUrl, coordinatorsUrl, eventsUrl } from '../../api/urls';
 import { SET_ACTIVITIES, SET_COORDINATORS, SET_EVENTS } from '../../store/actions';
 import { initialState } from '../../store/reducer';
 import { getActivitiesThunk, getCoordinatorsThunk, getEventsThunk } from '../../store/thunks';
-import { mockedActivitiesResponse, mockedCoordinatorsResponse } from '../../__mocks__/fetches.mock';
 import { createAxiosMock } from '../../__mocks__/utils';
-import { mockedActivitiesArray, mockedEventsArray } from '../../__mocks__/events.mock';
+import { mockedActivitiesArray, mockedCoordinatorsArray, mockedEventsArray } from '../../__mocks__/events.mock';
 
 const mock = createAxiosMock();
 
@@ -17,7 +16,7 @@ describe('Thunks', () => {
     beforeEach(() => {
         mock.onGet(eventsUrl).reply(200, mockedEventsArray);
         mock.onGet(activitiesUrl).reply(200, mockedActivitiesArray);
-        mock.onGet(coordinatorsUrl).reply(200, mockedCoordinatorsResponse);
+        mock.onGet(coordinatorsUrl).reply(200, mockedCoordinatorsArray);
     });
 
     const thunksTestSuite = [
@@ -34,7 +33,7 @@ describe('Thunks', () => {
         {
             name: 'should dispatch SET_COORDINATORS action',
             thunk: getCoordinatorsThunk,
-            expectedActions: [{ type: SET_COORDINATORS, payload: mockedCoordinatorsResponse }],
+            expectedActions: [{ type: SET_COORDINATORS, payload: mockedCoordinatorsArray }],
         }
     ];
 

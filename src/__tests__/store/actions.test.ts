@@ -12,8 +12,7 @@ import {
     SET_EVENTS
 } from '../../store/actions';
 import { initialState } from '../../store/reducer';
-import { mockedActivitiesArray, mockedEvent, mockedEventsArray } from '../../__mocks__/events.mock';
-import { mockedCoordinatorsResponse } from '../../__mocks__/fetches.mock';
+import { mockedActivitiesArray, mockedCoordinatorsArray, mockedEvent, mockedEventsArray } from '../../__mocks__/events.mock';
 
 describe('Actions', () => {
 
@@ -47,8 +46,8 @@ describe('Actions', () => {
         {
             action: setCoordinatorsAction,
             actionType: SET_COORDINATORS,
-            payload: mockedCoordinatorsResponse,
-            expectedActions: [{ type: SET_COORDINATORS, payload: mockedCoordinatorsResponse }],
+            payload: mockedCoordinatorsArray,
+            expectedActions: [{ type: SET_COORDINATORS, payload: mockedCoordinatorsArray }],
         }
     ];
 

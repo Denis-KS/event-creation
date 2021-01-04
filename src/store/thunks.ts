@@ -8,4 +8,4 @@ export const getActivitiesThunk = () => (dispatch: Dispatch) => fetchActivities(
     .then(result => dispatch(setActivitiesAction('data' in result ? (result.data as any) : result)));
 
 export const getCoordinatorsThunk = () => (dispatch: Dispatch) => fetchCoordinators()
-    .then(result => dispatch(setCoordinatorsAction(result)));
+    .then(result => dispatch(setCoordinatorsAction('data' in result ? (result.data as any) : result)));

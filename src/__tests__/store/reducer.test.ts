@@ -1,7 +1,7 @@
 import { IStore } from "../../models/store.model";
 import { IBaseAction, ADD_OR_UPDATE_EVENT, DELETE_EVENT, SET_ACTIVITIES, SET_COORDINATORS, SET_EVENTS } from "../../store/actions";
 import { initialState, reducer } from "../../store/reducer";
-import { mockedEvent, mockedInitialEvents, mockedEventsAfterDelete, mockedEventsAfterUpdate, mockedCoordinator, mockedEventsArray, mockedActivitiesArray, mockedActivitiesMap, mockedCoordinatorsArray, mockedCoordinatorsMap } from "../../__mocks__/events.mock";
+import { mockedEvent, mockedInitialEvents, mockedEventsAfterDelete, mockedEventsAfterUpdate, mockedEventsArray, mockedActivitiesArray, mockedActivitiesMap, mockedCoordinatorsArray, mockedCoordinatorsMap } from "../../__mocks__/events.mock";
 
 describe('reducer', () => {
 

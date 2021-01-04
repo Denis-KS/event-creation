@@ -3,6 +3,7 @@ import { activitiesUrl, coordinatorsUrl, eventsUrl } from "./urls";
 import axios from 'axios';
 import { IEvent } from "../models/event.model";
 import { IActivity } from "../models/activity.model";
+import { ICoordinatorResponse } from "../models/coordinator.model";
 
 export function fetchEvents() {
     return axios.get<IEvent[]>(eventsUrl).catch(() => Promise.resolve(mockedEventsResponse));
@@ -13,5 +14,5 @@ export function fetchActivities() {
 };
 
 export function fetchCoordinators() {
-    return axios.get(coordinatorsUrl).then(() => mockedCoordinatorsResponse);
+    return axios.get<ICoordinatorResponse>(coordinatorsUrl).catch(() => Promise.resolve(mockedCoordinatorsResponse));
 };
