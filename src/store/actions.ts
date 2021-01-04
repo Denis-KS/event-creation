@@ -7,6 +7,7 @@ export const DELETE_EVENT = 'DELETE_EVENT';
 export const SET_ACTIVITIES = 'SET_ACTIVITIES';
 export const SET_COORDINATORS = 'SET_COORDINATORS';
 export const SET_EVENTS = 'SET_EVENTS';
+export const SET_SEARCH_QUERY = 'SET_SEARCH_QUERY';
 
 export type Dispatch = (action: IBaseAction) => void;
 

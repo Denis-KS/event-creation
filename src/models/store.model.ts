@@ -8,3 +8,7 @@ export interface IStore {
     coordinators: Map<number, ICoordinator>;
     activities: Map<number | string, IActivity>;
 }
+
+export interface IFiltersStoreState {
+    searchQuery: string;
+}
