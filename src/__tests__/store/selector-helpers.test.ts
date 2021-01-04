@@ -1,45 +1,49 @@
-import { ICoordinator } from "../../models/coordinator.model";
+import { ICoordinator, ICoordinatorResponse } from "../../models/coordinator.model";
 import { ICredentials } from "../../models/credentials.model";
-import { serializeCoordinator } from "../../store/selector-helpers";
+import { serializeCoordinatorFullName, setPrefixToCoordinator } from "../../store/selector-helpers";
 
-describe('Selector Helpers', () => {
+describe('serializeCoordinatorFullName', () => {
     test('should return serialized coordinator', () => {
-        const mockedCoordinator: ICoordinator = { 
+        const mockedCoordinator: ICoordinatorResponse = { 
             "id": 0, 
             "name": "Name", 
             "lastname": "Lastname", 
             "email": "test@test.test"
         };
 
-        const expectedResult: ICredentials = {
+        const expectedResult: ICoordinator = {
             id: 0,
             name: 'Name Lastname',
+            email: 'test@test.test',
         }
 
-        expect(serializeCoordinator(mockedCoordinator, 1)).toEqual(expectedResult);
+        expect(serializeCoordinatorFullName(mockedCoordinator)).toEqual(expectedResult);
     });
 
     test('should return serialized coordinator when last name do not exist', () => {
-        const mockedCoordinator: ICoordinator = { 
+        const mockedCoordinator: ICoordinatorResponse = { 
             "id": 0, 
             "name": "Name", 
             "lastname": '', 
             "email": "test@test.test"
         };
 
-        const expectedResult: ICredentials = {
+        const expectedResult: ICoordinator = {
             id: 0,
             name: 'Name',
+            email: 'test@test.test',
         }
 
-        expect(serializeCoordinator(mockedCoordinator, 1)).toEqual(expectedResult);
+        expect(serializeCoordinatorFullName(mockedCoordinator)).toEqual(expectedResult);
     });
+});
+
+describe('setPrefixToCoordinator', () => {
 
     test('should return serialized coordinator with prefix when it is an active user', () => {
         const mockedCoordinator: ICoordinator = { 
             "id": 0, 
-            "name": "Name", 
-            "lastname": 'Lastname', 
+            "name": "Name Lastname", 
             "email": "test@test.test"
         };
 
@@ -48,7 +52,7 @@ describe('Selector Helpers', () => {
             name: 'Me - Name Lastname',
         }
 
-        expect(serializeCoordinator(mockedCoordinator, 0)).toEqual(expectedResult);
+        expect(setPrefixToCoordinator(mockedCoordinator, 0)).toEqual(expectedResult);
     });
 
 });

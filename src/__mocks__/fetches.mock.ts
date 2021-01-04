@@ -1,5 +1,5 @@
 import { IActivity } from "../models/activity.model";
-import { ICoordinator } from "../models/coordinator.model";
+import { ICoordinator, ICoordinatorResponse } from "../models/coordinator.model";
 import { ICredentials } from "../models/credentials.model";
 import { IEvent } from "../models/event.model";
 
@@ -48,24 +48,8 @@ export const mockedActivitiesResponse: IActivity[] = [
     { "id": 8, "name": "Running" },
     { "id": 9, "name": "Dance" }
   ];
-
-  export const coordinatorSelf: ICredentials[] = [
-    { "id": 0, "name": "Me - Daniel Mitchell" },
-  ];
-
-  export const coordinatorsOthers: ICredentials[] = [
-    { "id": 1, "name": "Albert Alexander" },
-    { "id": 2, "name": "Philip Hughes" },
-    { "id": 3, "name": "Walter Nelson" },
-    { "id": 4, "name": "Ashley Hernandez" },
-    { "id": 5, "name": "Donna Washington" },
-    { "id": 6, "name": "Andrew White" },
-    { "id": 7, "name": "Sharon Allen" },
-    { "id": 8, "name": "Russell Parker" },
-    { "id": 9, "name": "Janet Stewart" },
-  ];
   
-  export const mockedCoordinatorsResponse: ICoordinator[] = [
+  export const mockedCoordinatorsResponse: ICoordinatorResponse[] = [
     { "id": 0, "name": "Daniel", "lastname": "Mitchell", "email": "daniel.mitchell@hussa.rs" },
     { "id": 1, "name": "Albert", "lastname": "Alexander", "email": "albert.alexander@hussa.rs" },
     { "id": 2, "name": "Philip", "lastname": "Hughes", "email": "philip.hughes@hussa.rs" },

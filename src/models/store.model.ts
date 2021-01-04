@@ -5,6 +5,6 @@ import { IEvent } from "./event.model";
 export interface IStore {
     activeUserId: number;
     events: Map<number, IEvent>;
-    coordinators: ICoordinator[];
+    coordinators: Map<number, ICoordinator>;
     activities: Map<number | string, IActivity>;
 }

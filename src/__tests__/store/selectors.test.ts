@@ -1,12 +1,29 @@
 import { IStore } from "../../models/store.model";
-import { getActiveUserIdSelector, getActivitiesSelector, getCoordinatorsSelector, getEventsSelector, getEventsArraySelector, getGroupedCoordinatorsSelector, getActivitiesListSelector } from "../../store/selectors";
-import { mockedInitialEvents, mockedEvent, mockedActivitiesMap, mockedActivitiesArrayWithDefault } from "../../__mocks__/events.mock";
-import { mockedCoordinatorsResponse, coordinatorSelf, coordinatorsOthers } from "../../__mocks__/fetches.mock";
+import {
+    getActiveUserIdSelector,
+    getActivitiesSelector,
+    getCoordinatorsSelector,
+    getEventsSelector,
+    getEventsArraySelector,
+    getGroupedCoordinatorsSelector,
+    getActivitiesListSelector,
+    getCoordinatorsListSelector
+} from "../../store/selectors";
+import {
+    mockedInitialEvents,
+    mockedEvent,
+    mockedActivitiesMap,
+    mockedActivitiesArrayWithDefault,
+    mockedCoordinatorsMap,
+    mockedSerializedCoordinatorsArray,
+    mockedCoordinatorSelfGroup,
+    mockedCoordinatorsOthersGroup
+} from "../../__mocks__/events.mock";
 
 export const mockedState: IStore = {
     activeUserId: 0,
     activities: mockedActivitiesMap,
-    coordinators: mockedCoordinatorsResponse,
+    coordinators: mockedCoordinatorsMap,
     events: mockedInitialEvents,
 };
 
@@ -25,7 +42,11 @@ describe('Selectors', () => {
     });
 
     test('should get coordinators', () => {
-        expect(getCoordinatorsSelector(mockedState)).toBe(mockedCoordinatorsResponse);
+        expect(getCoordinatorsSelector(mockedState)).toEqual(mockedCoordinatorsMap);
+    });
+
+    test('should get coordinators as array', () => {
+        expect(getCoordinatorsListSelector(mockedState)).toEqual(mockedSerializedCoordinatorsArray);
     });
 
     test('should get events', () => {
@@ -39,11 +60,11 @@ describe('Selectors', () => {
 
     test('should get grouped coordinators', () => {
         const expectedResult = [
-            { groupName: 'Me', options: coordinatorSelf }, 
-            { groupName: 'Others', options: coordinatorsOthers },
+            { groupName: 'Me', options: mockedCoordinatorSelfGroup }, 
+            { groupName: 'Others', options: mockedCoordinatorsOthersGroup },
         ];
 
-        expect(getGroupedCoordinatorsSelector.resultFunc(mockedCoordinatorsResponse, 0)).toEqual(expectedResult);
+        expect(getGroupedCoordinatorsSelector.resultFunc(mockedSerializedCoordinatorsArray, 0)).toEqual(expectedResult);
     });
 
 });

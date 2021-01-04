@@ -4,7 +4,7 @@ import { activitiesUrl, coordinatorsUrl, eventsUrl } from '../../api/urls';
 import { SET_ACTIVITIES, SET_COORDINATORS, SET_EVENTS } from '../../store/actions';
 import { initialState } from '../../store/reducer';
 import { getActivitiesThunk, getCoordinatorsThunk, getEventsThunk } from '../../store/thunks';
-import { mockedActivitiesResponse, mockedCoordinatorsResponse, mockedEventsResponse } from '../../__mocks__/fetches.mock';
+import { mockedActivitiesResponse, mockedCoordinatorsResponse } from '../../__mocks__/fetches.mock';
 import { createAxiosMock } from '../../__mocks__/utils';
 import { mockedActivitiesArray, mockedEventsArray } from '../../__mocks__/events.mock';
 

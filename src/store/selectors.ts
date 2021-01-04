@@ -5,12 +5,11 @@ import { ICredentials } from "../models/credentials.model";
 import { IEvent } from "../models/event.model";
 import { IGroupedDropdown } from "../models/inputs.model";
 import { IStore } from "../models/store.model";
-import { mockedActivitiesMap } from "../__mocks__/events.mock";
-import { serializeCoordinator } from "./selector-helpers";
+import { setPrefixToCoordinator } from "./selector-helpers";
 
 export const getActiveUserIdSelector = (state: IStore): number => state.activeUserId;
 export const getActivitiesSelector = (state: IStore): Map<string | number, IActivity> => state.activities;
-export const getCoordinatorsSelector = (state: IStore): ICoordinator[] => state.coordinators;
+export const getCoordinatorsSelector = (state: IStore): Map<number, ICoordinator> => state.coordinators;
 export const getEventsSelector = (state: IStore): Map<number, IEvent> => state.events;
 
 export const getEventsArraySelector = createSelector(
@@ -23,14 +22,19 @@ export const getActivitiesListSelector = createSelector(
     (activitiesMap: Map<string | number, IActivity>) => Array.from(activitiesMap.values())
 );
 
+export const getCoordinatorsListSelector = createSelector(
+    getCoordinatorsSelector,
+    (coordinatorsMap: Map<number, ICoordinator>) => Array.from(coordinatorsMap.values())
+);
+
 export const getGroupedCoordinatorsSelector = createSelector(
-    [getCoordinatorsSelector, getActiveUserIdSelector],
-    (coordinators: ICoordinator[], userId: number) => {
+    [getCoordinatorsListSelector, getActiveUserIdSelector],
+    (coordinators: ICoordinator[], userId: number): IGroupedDropdown<ICredentials>[] => {
         const groupSelf: IGroupedDropdown<ICredentials> = { groupName: 'Me', options: [] };
         const groupOthers: IGroupedDropdown<ICredentials> = { groupName: 'Others', options: [] };
 
         coordinators.forEach((coordinator: ICoordinator) => {
-            const serializedCoordinator: ICredentials = serializeCoordinator(coordinator, userId);
+            const serializedCoordinator: ICredentials = setPrefixToCoordinator(coordinator, userId);
             if (coordinator.id === userId) {
                 groupSelf.options.push(serializedCoordinator);
             } else {

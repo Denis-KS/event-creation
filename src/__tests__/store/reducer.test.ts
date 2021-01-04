@@ -1,7 +1,7 @@
 import { IStore } from "../../models/store.model";
 import { IBaseAction, ADD_OR_UPDATE_EVENT, DELETE_EVENT, SET_ACTIVITIES, SET_COORDINATORS, SET_EVENTS } from "../../store/actions";
 import { initialState, reducer } from "../../store/reducer";
-import { mockedEvent, mockedInitialEvents, mockedEventsAfterDelete, mockedEventsAfterUpdate, mockedActivity, mockedCoordinator, mockedEventsArray, mockedActivitiesArray, mockedActivitiesMap } from "../../__mocks__/events.mock";
+import { mockedEvent, mockedInitialEvents, mockedEventsAfterDelete, mockedEventsAfterUpdate, mockedCoordinator, mockedEventsArray, mockedActivitiesArray, mockedActivitiesMap, mockedCoordinatorsArray, mockedCoordinatorsMap } from "../../__mocks__/events.mock";
 
 describe('reducer', () => {
 
@@ -44,8 +44,8 @@ describe('reducer', () => {
     });
 
     test('should set coordinators', () => {
-        const coordinators = [mockedCoordinator, { ...mockedCoordinator, id: 2 }];
-        const expectedResult: IStore = { ...initialState, coordinators };
+        const coordinators = mockedCoordinatorsArray
+        const expectedResult: IStore = { ...initialState, coordinators: mockedCoordinatorsMap };
         const action: IBaseAction = { type: SET_COORDINATORS, payload: coordinators };
 
         expect(reducer(initialState, action)).toEqual(expectedResult);
