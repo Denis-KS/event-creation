@@ -1,3 +1,4 @@
+import { IEvent } from "../../models/event.model";
 import { IStore } from "../../models/store.model";
 import {
     getActiveUserIdSelector,
@@ -55,9 +56,18 @@ describe('Selectors', () => {
         expect(getEventsSelector(mockedState)).toBe(mockedInitialEvents);
     });
 
-    test('should get events array', () => {
-        const expectedResult = [mockedEvent, {...mockedEvent, id: 1, title: 'Second Test Event'}, {...mockedEvent, id: 2, title: 'Third Event'}];
-        expect(getEventsArraySelector.resultFunc(mockedInitialEvents)).toEqual(expectedResult);
+    test('should get all events as array when search query is empty', () => {
+        const expectedResult: IEvent[] = [mockedEvent, {...mockedEvent, id: 1, title: 'Second Test Event'}, {...mockedEvent, id: 2, title: 'Third Event'}];
+        expect(getEventsArraySelector.resultFunc(mockedInitialEvents, '')).toEqual(expectedResult);
+    });
+
+    test('should get partial events as array when search query matches', () => {
+        const expectedResult: IEvent[] = [mockedEvent, { ...mockedEvent, id: 1, title: 'Second Test Event' }];
+        expect(getEventsArraySelector.resultFunc(mockedInitialEvents, 'test')).toEqual(expectedResult);
+    });
+
+    test('should return empty array when no search query match', () => {
+        expect(getEventsArraySelector.resultFunc(mockedInitialEvents, 'resultless query')).toEqual([]);
     });
 
     test('should get grouped coordinators', () => {

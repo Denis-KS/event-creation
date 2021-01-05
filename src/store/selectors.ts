@@ -1,3 +1,4 @@
+import { isEmpty } from "lodash";
 import { createSelector } from "reselect";
 import { IActivity } from "../models/activity.model";
 import { ICoordinator } from "../models/coordinator.model";
@@ -6,6 +7,7 @@ import { IEvent } from "../models/event.model";
 import { IGroupedDropdown } from "../models/inputs.model";
 import { IStore } from "../models/store.model";
 import { setPrefixToCoordinator } from "./selector-helpers";
+import Fuse from 'fuse.js';
 
 export const getActiveUserIdSelector = (state: IStore): number => state.activeUserId;
 export const getActivitiesSelector = (state: IStore): Map<string | number, IActivity> => state.activities;
@@ -14,8 +16,16 @@ export const getEventsSelector = (state: IStore): Map<number, IEvent> => state.e
 export const getSearchQuerySelector = (state: IStore): string => state.searchQuery;
 
 export const getEventsArraySelector = createSelector(
-    getEventsSelector,
-    (events: Map<number, IEvent>): IEvent[] => Array.from(events.values())
+    [getEventsSelector, getSearchQuerySelector], 
+    (events: Map<number, IEvent>, query: string): IEvent[] => {
+        const eventsList =  Array.from(events.values());
+        if (!isEmpty(query)) {
+            const fuse = buildFuse<IEvent>(eventsList);
+
+            return fuse.search(query).map(({ item }) => item as IEvent);
+        }
+        return eventsList;
+    }
 );
 
 export const getActivitiesListSelector = createSelector(
@@ -46,3 +56,10 @@ export const getGroupedCoordinatorsSelector = createSelector(
         return [groupSelf, groupOthers];
     }
 );
+
+function buildFuse<T>(items: T[]): Fuse<T> {
+    return new Fuse<T>(items, {
+        keys: ['title'],
+        minMatchCharLength: 3,
+    });
+}
