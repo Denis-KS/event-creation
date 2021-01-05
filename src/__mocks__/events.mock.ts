@@ -19,23 +19,27 @@ export const mockedEvent: IEvent = {
     },
 };
 
-export const mockedEventsArray: IEvent[] = [mockedEvent, { ...mockedEvent, id: 1 }, { ...mockedEvent, id: 2 }];
+export const mockedEventsArray: IEvent[] = [
+    mockedEvent, 
+    { ...mockedEvent, id: 1, title: 'Second Test Event' }, 
+    { ...mockedEvent, id: 2, title: 'Third Event' }
+];
 
 export const mockedInitialEvents: Map<number, IEvent> = new Map([
     [0, mockedEvent],
-    [1, { ...mockedEvent, id: 1 }],
-    [2, { ...mockedEvent, id: 2 }],
+    [1, { ...mockedEvent, id: 1, title: 'Second Test Event' }],
+    [2, { ...mockedEvent, id: 2, title: 'Third Event' }],
 ]);
 
 export const mockedEventsAfterDelete: Map<number, IEvent> = new Map([
     [0, mockedEvent],
-    [2, { ...mockedEvent, id: 2 }],
+    [2, { ...mockedEvent, id: 2, title: 'Third Event' }],
 ]);
 
 export const mockedEventsAfterUpdate: Map<number, IEvent> = new Map([
     [0, mockedEvent],
     [1, { ...mockedEvent, id: 1, title: 'Updated Test Event' }],
-    [2, { ...mockedEvent, id: 2 }],
+    [2, { ...mockedEvent, id: 2, title: 'Third Event' }],
 ]);
 
 export const mockedActivitiesArray: IActivity[] = [

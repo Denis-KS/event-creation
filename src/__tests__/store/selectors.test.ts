@@ -56,7 +56,7 @@ describe('Selectors', () => {
     });
 
     test('should get events array', () => {
-        const expectedResult = [mockedEvent, {...mockedEvent, id: 1}, {...mockedEvent, id: 2}];
+        const expectedResult = [mockedEvent, {...mockedEvent, id: 1, title: 'Second Test Event'}, {...mockedEvent, id: 2, title: 'Third Event'}];
         expect(getEventsArraySelector.resultFunc(mockedInitialEvents)).toEqual(expectedResult);
     });
 

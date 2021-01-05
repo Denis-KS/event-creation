@@ -13,7 +13,6 @@ export const initialState: IStore = {
     activities: new Map<string | number, IActivity>(),
     coordinators: new Map<number, ICoordinator>(),
     searchQuery: '',
-    
 };
 
 export const reducer = (state: IStore = initialState, { type, payload }: IBaseAction) => {
