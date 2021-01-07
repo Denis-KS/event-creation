@@ -1,5 +1,5 @@
-import configureStore, { MockStore } from 'redux-mock-store';
-import { findAllByTestId, fireEvent, screen } from "@testing-library/react";
+import configureStore from 'redux-mock-store';
+import { screen } from "@testing-library/react";
 import React from "react";
 import { mockedEventsArray, mockedInitialEvents } from "../../../__mocks__/events.mock";
 import { IStore } from "../../../models/store.model";

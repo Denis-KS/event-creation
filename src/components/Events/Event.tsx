@@ -25,11 +25,11 @@ export const Event: React.FC<IEventProps> = ({ event, category, coordinator }) =
 
     return (
         <EventBox data-testid="event">
-            <Box width="80%">
-                <Box><Text data-testid="event-title" weight="bold">{title}</Text></Box>
-                <Box><Text data-testid="event-description" size="13px">{description}</Text></Box>
+            <Box width="80%" margin='0 0 10px 0'>
+                <Box><Text data-testid="event-title" weight="bold" size='18px'>{title}</Text></Box>
+                <Box lineHeight={1}><Text data-testid="event-description" size="13px">{description}</Text></Box>
             </Box>
-            <FlexBox>
+            <FlexBox justifyContent="space-between">
                 <Box>
                     <EventDisplayProperty testId="event-category" title="Category" value={category} />
                     <EventDisplayProperty testId="event-payment-type" title="Payment" value={paid_event ? 'Paid Event' : 'Free Event'} />
@@ -37,11 +37,11 @@ export const Event: React.FC<IEventProps> = ({ event, category, coordinator }) =
                     <EventDisplayProperty testId="event-reward" title="Reward" value={reward > 0 ? `${reward} reward points for attendance` : 'No Reward'} />
                 </Box>
                 <Box>
-                    <span data-testid="event-coordinator">Coordinator: {coordinator}</span>
-                    <span data-testid="event-coordinator-email">Email: {event.coordinator.email}</span>
+                    <EventDisplayProperty testId="event-coordinator" title="Coordinator" value={coordinator} />
+                    <EventDisplayProperty testId="event-coordinator-email" title="Email" value={event.coordinator.email} />
                 </Box>
                 <Box>
-                    <span data-testid="event-duration">Duration: {duration} hour(s)</span>
+                    <EventDisplayProperty testId="event-duration" title="Duration" value={`${duration} hour(s)`} />
                 </Box>
             </FlexBox>
         </EventBox>

@@ -5,6 +5,7 @@ interface IBoxProps {
     backgroundColor?: string;
     width?: string;
     maxWidth?: string;
+    lineHeight?: number;
 }
 
 export const Box = styled.div<IBoxProps>`
@@ -12,5 +13,6 @@ export const Box = styled.div<IBoxProps>`
     margin: ${props => props.margin || 'initial'};
     background-color: ${props => props.backgroundColor || 'initial'};
     width: ${({ width } ) => width || 'initial'};
-    max-width: ${({ maxWidth } ) => maxWidth || 'initial'}
+    max-width: ${({ maxWidth } ) => maxWidth || 'initial'};
+    line-height: ${({ lineHeight } ) => lineHeight || 'initial'};
 `;

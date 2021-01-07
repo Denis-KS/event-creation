@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getEventsArraySelector, getSearchQuerySelector } from "../../store/selectors";
-import { getEventsThunk } from "../../store/thunks";
+import { batch, useDispatch, useSelector } from "react-redux";
+import { getActivitiesSelector, getCoordinatorsSelector, getEventsArraySelector, getSearchQuerySelector } from "../../store/selectors";
+import { getActivitiesThunk, getCoordinatorsThunk, getEventsThunk } from "../../store/thunks";
 import { isEmpty } from 'lodash';
 import { useHistory } from "react-router";
 import { Routes } from "../../App";
@@ -14,6 +14,8 @@ export const Events: React.FC = () => {
     const history = useHistory();
     const events = useSelector(getEventsArraySelector);
     const searchQuery = useSelector(getSearchQuerySelector);
+    const categoriesMap = useSelector(getActivitiesSelector);
+    const coordinatorsMap = useSelector(getCoordinatorsSelector);
 
     const handleCreateEventClick = useCallback(() => {
         history.push(Routes.CREATE_EVENT);
@@ -24,7 +26,11 @@ export const Events: React.FC = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(getEventsThunk());
+        batch(() => {
+            dispatch(getEventsThunk());
+            dispatch(getActivitiesThunk());
+            dispatch(getCoordinatorsThunk());
+        });
     }, [dispatch]);
 
     return(
@@ -35,7 +41,7 @@ export const Events: React.FC = () => {
             </FlexBox>
             
             {!isEmpty(events) 
-                ? <EventsList events={events} />
+                ? <EventsList events={events} coordinatorsMap={coordinatorsMap} categoriesMap={categoriesMap} />
                 : <div>There are no events yet</div>
             }
         </div>

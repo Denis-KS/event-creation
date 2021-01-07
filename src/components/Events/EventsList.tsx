@@ -1,22 +1,31 @@
 import { isEmpty } from "lodash";
 import React, { useCallback } from "react";
+import { IActivity } from "../../models/activity.model";
+import { ICoordinator } from "../../models/coordinator.model";
 import { IEvent } from "../../models/event.model";
 import { Event } from "./Event";
 
 export interface IEventsListProps {
     events: IEvent[];
+    coordinatorsMap: Map<number, ICoordinator>;
+    categoriesMap: Map<string | number, IActivity>;
 }
 
-export const EventsList: React.FC<IEventsListProps> = ({ events }) => {
+export const EventsList: React.FC<IEventsListProps> = ({ 
+    events, 
+    categoriesMap = new Map(), 
+    coordinatorsMap = new Map()
+}) => {
 
-    //TODO change logic for storing and getting of coordinators and activities
     const renderEvent = useCallback((event: IEvent) => {
         return (
-            <Event event={event} coordinator="" category="" key={event.id}> 
-
-            </Event>
+            <Event 
+                event={event} 
+                coordinator={coordinatorsMap.get(event.id)?.name} 
+                category={categoriesMap.get(event.id)?.name} key={event.id}
+            />
         );
-    }, []);
+    }, [coordinatorsMap, categoriesMap]);
 
     return !isEmpty(events) 
         ? (<div data-testid="events-list">
