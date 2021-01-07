@@ -1,5 +1,5 @@
-import configureStore from 'redux-mock-store';
-import { screen } from "@testing-library/react";
+import configureStore, { MockStore } from 'redux-mock-store';
+import { findAllByTestId, fireEvent, screen } from "@testing-library/react";
 import React from "react";
 import { mockedEventsArray, mockedInitialEvents } from "../../../__mocks__/events.mock";
 import { IStore } from "../../../models/store.model";
@@ -24,10 +24,6 @@ describe('Events', () => {
 
     beforeEach(() => {
         mock.onGet(eventsUrl).reply(200, mockedEventsArray);
-    });
-
-    afterEach(() => {
-       
     });
 
     test('should render placeholder when no events are loaded', async () => {
@@ -62,7 +58,17 @@ describe('Events', () => {
         expect(screen.getByTestId('create-update-event')).toBeInTheDocument();
     });
 
-    xtest('should search event', async () => {
+    test('should show items matches to search query', async () => {
+        setupComponent();
 
+        expect(await screen.findByText('Test Event')).toBeInTheDocument();
+        expect(screen.getByText('Second Test Event')).toBeInTheDocument();
+        expect(screen.getByText('Third Event')).toBeInTheDocument();
+
+        await userEvent.type(screen.getByTestId('search-input'), 'test');
+
+        expect(screen.getByText('Test Event')).toBeInTheDocument();
+        expect(screen.getByText('Second Test Event')).toBeInTheDocument();
+        expect(screen.queryByText('Third Event')).not.toBeInTheDocument();
     });
 });

@@ -60,6 +60,8 @@ export const getGroupedCoordinatorsSelector = createSelector(
 function buildFuse<T>(items: T[]): Fuse<T> {
     return new Fuse<T>(items, {
         keys: ['title'],
-        minMatchCharLength: 3,
+        minMatchCharLength: 1,
+        threshold: 0.1,
+        ignoreLocation: true,
     });
 }
