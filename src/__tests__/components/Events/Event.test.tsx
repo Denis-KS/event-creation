@@ -29,6 +29,27 @@ describe('Event', () => {
         expect(element).toHaveTextContent('Test Event');
     });
 
+    test('should display fee as "Free" when event is unpaid', () => {
+        setupComponent(mockedProps);
+
+        const element = screen.getByTestId('event-fee');
+
+        expect(element).toBeInTheDocument();
+        expect(element).toHaveTextContent('Free');
+    });
+
+    test('should display fee amount when event is paid', () => {
+        mockedProps.event.paid_event = true;
+        mockedProps.event.event_fee = 100500;
+
+        setupComponent(mockedProps);
+
+        const element = screen.getByTestId('event-fee');
+
+        expect(element).toBeInTheDocument();
+        expect(element).toHaveTextContent('100500$');
+    });
+
     test('should render event description', () => {
         setupComponent(mockedProps);
 
@@ -45,43 +66,6 @@ describe('Event', () => {
 
         expect(element).toBeInTheDocument();
         expect(element).toHaveTextContent('Test Category');
-    });
-
-    test('should display payment type as free event', () => {
-        setupComponent(mockedProps);
-
-        const element = screen.getByTestId('event-payment-type');
-
-        expect(element).toBeInTheDocument();
-        expect(element).toHaveTextContent('Free Event');
-    });
-
-    test('should display payment type as paid event', () => {
-        mockedProps.event.paid_event = true;
-        setupComponent(mockedProps);
-
-        const element = screen.getByTestId('event-payment-type');
-
-        expect(element).toBeInTheDocument();
-        expect(element).toHaveTextContent('Paid Event');
-    });
-
-    test('should not display paymant amount if event is free', () => {
-        setupComponent(mockedProps);
-
-        expect(screen.queryByTestId('event-payment-fee')).toBeNull();
-    });
-
-    test('should display payment amount when event is paid', () => {
-        mockedProps.event.paid_event = true;
-        mockedProps.event.event_fee = 100500;
-
-        setupComponent(mockedProps);
-
-        const element = screen.getByTestId('event-payment-fee');
-
-        expect(element).toBeInTheDocument();
-        expect(element).toHaveTextContent('100500');
     });
 
     test('should display No Reward when no reward for attending event', () => {

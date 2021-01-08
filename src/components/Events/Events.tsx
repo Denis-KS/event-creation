@@ -26,6 +26,7 @@ export const Events: React.FC = () => {
     }, [dispatch]);
 
     useEffect(() => {
+        // todo fix batching
         batch(() => {
             dispatch(getEventsThunk());
             dispatch(getActivitiesThunk());
