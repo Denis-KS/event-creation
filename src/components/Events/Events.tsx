@@ -25,6 +25,14 @@ export const Events: React.FC = () => {
         dispatch(setSearchQueryAction(value));
     }, [dispatch]);
 
+    const renderPlaceholder = useCallback(() => {
+        const placeholderText = !isEmpty(searchQuery) 
+            ? 'No Results' 
+            : 'There are no events yet';
+
+            return <div>{placeholderText}</div>
+    }, [searchQuery]);
+
     useEffect(() => {
         // todo fix batching
         batch(() => {
@@ -43,7 +51,7 @@ export const Events: React.FC = () => {
             
             {!isEmpty(events) 
                 ? <EventsList events={events} coordinatorsMap={coordinatorsMap} categoriesMap={categoriesMap} />
-                : <div>There are no events yet</div>
+                : renderPlaceholder()
             }
         </div>
     );
