@@ -8,6 +8,7 @@ import { Routes } from "../../App";
 import { EventsList } from "./EventsList";
 import { FlexBox } from "../styled/Box/FlexBox";
 import { setSearchQueryAction } from "../../store/actions";
+import { SearchInput } from "../inputs/SearchInput";
 
 export const Events: React.FC = () => {
     const dispatch = useDispatch();
@@ -45,7 +46,7 @@ export const Events: React.FC = () => {
     return(
         <div data-testid="events">
             <FlexBox justifyContent="space-between" margin="0 0 20px 0">
-                <input data-testid="search-input" onChange={handleSearchInput} value={searchQuery} />
+                <SearchInput onChange={handleSearchInput} value={searchQuery} />
                 <button onClick={handleCreateEventClick}>Create Event</button>
             </FlexBox>
             

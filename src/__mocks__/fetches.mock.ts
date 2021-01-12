@@ -1,6 +1,5 @@
 import { IActivity } from "../models/activity.model";
-import { ICoordinator, ICoordinatorResponse } from "../models/coordinator.model";
-import { ICredentials } from "../models/credentials.model";
+import { ICoordinatorResponse } from "../models/coordinator.model";
 import { IEvent } from "../models/event.model";
 
 export const mockedEventsResponse: IEvent[] = [

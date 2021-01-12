@@ -6,6 +6,7 @@ interface IBoxProps {
     width?: string;
     maxWidth?: string;
     lineHeight?: number;
+    position?: string;
 }
 
 export const Box = styled.div<IBoxProps>`
@@ -15,4 +16,5 @@ export const Box = styled.div<IBoxProps>`
     width: ${({ width } ) => width || 'initial'};
     max-width: ${({ maxWidth } ) => maxWidth || 'initial'};
     line-height: ${({ lineHeight } ) => lineHeight || 'initial'};
+    position: ${({ position } ) => position || 'initial'};
 `;
