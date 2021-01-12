@@ -119,4 +119,11 @@ describe('Event', () => {
         expect(element).toBeInTheDocument();
         expect(element).toHaveTextContent('5 hour(s)');
     });
+
+    test('should display delete button', () => {
+        setupComponent(mockedProps);
+
+        const element = screen.getByTestId('delete-event-btn');
+        expect(element).toBeInTheDocument();
+    });
 });

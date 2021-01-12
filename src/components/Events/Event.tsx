@@ -1,6 +1,8 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { IEvent } from "../../models/event.model";
+import { DELETE_ICON } from "../../utils/icons";
+import { IconButton } from "../common/IconButton";
 import { Box } from "../styled/Box/Box";
 import { FlexBox } from "../styled/Box/FlexBox";
 import { Text } from "../styled/Text";
@@ -28,8 +30,9 @@ const TitleGridArea = styled(FlexBox)`
     align-items: center;
 `;
 
-const ControlsGridArea = styled(Box)`
+const ControlsGridArea = styled(FlexBox)`
     grid-row: 1;
+    justify-content: flex-end;
 `;
 
 const DescriptionGridArea = styled(Box)`
@@ -73,7 +76,9 @@ export const Event: React.FC<IEventProps> = ({ event, category, coordinator }) =
                 <Text data-testid="event-title" weight="bold" size='18px'>{title}</Text>
                 {renderEventFee()}
             </TitleGridArea>
-            <ControlsGridArea></ControlsGridArea>
+            <ControlsGridArea>
+                <IconButton icon={DELETE_ICON} testId="delete-event-btn" />
+            </ControlsGridArea>
             <DescriptionGridArea lineHeight={1}>
                 <Text data-testid="event-description" size="13px">{description}</Text>
             </DescriptionGridArea>

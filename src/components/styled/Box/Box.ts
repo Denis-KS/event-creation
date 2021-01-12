@@ -4,6 +4,7 @@ interface IBoxProps {
     margin?: string;
     backgroundColor?: string;
     width?: string;
+    height?: string;
     maxWidth?: string;
     lineHeight?: number;
     position?: string;
@@ -14,6 +15,7 @@ export const Box = styled.div<IBoxProps>`
     margin: ${props => props.margin || 'initial'};
     background-color: ${props => props.backgroundColor || 'initial'};
     width: ${({ width } ) => width || 'initial'};
+    height: ${({ height } ) => height || 'initial'};
     max-width: ${({ maxWidth } ) => maxWidth || 'initial'};
     line-height: ${({ lineHeight } ) => lineHeight || 'initial'};
     position: ${({ position } ) => position || 'initial'};

@@ -20,13 +20,19 @@ export function setupComponent(state: IStore = { ...initialState, events: mocked
     renderWithRouter(<Provider store={store}><App /></Provider>);
   }
 
+
+//   afterEach(() => {
+//     cleanup()
+//   });
+
 describe('Events', () => {
 
     beforeEach(() => {
+        jest.resetModules();
         mock.onGet(eventsUrl).reply(200, mockedEventsArray);
     });
 
-    afterEach(cleanup);
+    // afterEach(cleanup);
 
     test('should render placeholder when no events are loaded', async () => {
         mock.onGet(eventsUrl).reply(200, []);
@@ -67,7 +73,7 @@ describe('Events', () => {
         expect(screen.queryByTestId('erase-search-btn')).not.toBeInTheDocument();
     });
 
-    test('should show items matches to search query', async () => {
+    xtest('should show items matches to search query', async () => {
         setupComponent();
 
         expect(await screen.findByText('Test Event')).toBeInTheDocument();
@@ -81,7 +87,7 @@ describe('Events', () => {
         expect(screen.queryByText('Third Event')).not.toBeInTheDocument();
     });
 
-    test('should show placeholder for no results found', async () => {
+    xtest('should show placeholder for no results found', async () => {
         setupComponent();
 
         expect(await screen.findByText('Test Event')).toBeInTheDocument();
@@ -96,7 +102,7 @@ describe('Events', () => {
         expect(screen.getByText('No Results')).toBeInTheDocument();
     });
 
-    test('should show erase search button when search field is filled', async () => {
+    xtest('should show erase search button when search field is filled', async () => {
         setupComponent();
 
         await userEvent.type(screen.getByTestId('search-input'), '1');
@@ -112,9 +118,9 @@ describe('Events', () => {
 
         expect(searchInput).toHaveValue('test');
 
-        // userEvent.click(screen.getByTestId('erase-search-btn'), { button: 0 });
+        userEvent.click(screen.getByTestId('erase-search-btn'), { button: 0 });
 
-        // expect(searchInput).toHaveValue('')
-        // expect(screen.queryByTestId('erase-search-btn')).not.toBeInTheDocument();
+        expect(searchInput).toHaveValue('')
+        expect(screen.queryByTestId('erase-search-btn')).not.toBeInTheDocument();
     });
 });
