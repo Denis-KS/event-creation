@@ -25,13 +25,13 @@ export const reducer = (state: IStore = initialState, { type, payload }: IBaseAc
             const events = state.events;
             events.set(payload.id, payload);
 
-            return { ...state, events };
+            return { ...state, events: new Map(events) };
         }
         case DELETE_EVENT: {
             const events = state.events;
             events.delete(payload);
 
-            return { ...state, events };
+            return { ...state, events: new Map(events) };
         }
         case SET_ACTIVITIES: {
             const activitiesWithDefault: IActivity[] = [{ id: 'unselected', name: 'Select Category' }, ...payload];
