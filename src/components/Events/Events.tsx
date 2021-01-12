@@ -7,7 +7,7 @@ import { useHistory } from "react-router";
 import { Routes } from "../../App";
 import { EventsList } from "./EventsList";
 import { FlexBox } from "../styled/Box/FlexBox";
-import { eraseSearchQueryAction, setSearchQueryAction } from "../../store/actions";
+import { deleteEventAction, eraseSearchQueryAction, setSearchQueryAction } from "../../store/actions";
 import { SearchInput } from "../inputs/SearchInput";
 
 export const Events: React.FC = () => {
@@ -28,6 +28,10 @@ export const Events: React.FC = () => {
 
     const handleEraseSearchClick = useCallback(() => {
         dispatch(eraseSearchQueryAction());
+    }, [dispatch]);
+
+    const handleDeleteEvent = useCallback((eventId: number) => {
+        dispatch(deleteEventAction(eventId));
     }, [dispatch]);
 
     const renderPlaceholder = useCallback(() => {
@@ -55,7 +59,7 @@ export const Events: React.FC = () => {
             </FlexBox>
             
             {!isEmpty(events) 
-                ? <EventsList events={events} coordinatorsMap={coordinatorsMap} categoriesMap={categoriesMap} />
+                ? <EventsList events={events} coordinatorsMap={coordinatorsMap} categoriesMap={categoriesMap} deleteEvent={handleDeleteEvent} />
                 : renderPlaceholder()
             }
         </div>

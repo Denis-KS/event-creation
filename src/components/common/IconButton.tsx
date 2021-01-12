@@ -3,13 +3,13 @@ import { Box } from "../styled/Box/Box";
 
 interface IIconButtonProps {
     icon: string;
-    // onClick: any;
+    onClick: any;
     testId?: string;
 }
 
-export const IconButton: React.FC<IIconButtonProps> = ({ icon, testId }) => {
+export const IconButton: React.FC<IIconButtonProps> = ({ icon, testId, onClick }) => {
     return (
-        <Box width="20px" height="20px" data-testid={testId}>
+        <Box width="20px" height="20px" data-testid={testId} onClick={onClick}>
             <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                 <path d={icon} />
             </svg>

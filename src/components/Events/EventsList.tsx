@@ -9,12 +9,14 @@ export interface IEventsListProps {
     events: IEvent[];
     coordinatorsMap: Map<number, ICoordinator>;
     categoriesMap: Map<string | number, IActivity>;
+    deleteEvent: (id: number) => void;
 }
 
 export const EventsList: React.FC<IEventsListProps> = ({ 
     events, 
     categoriesMap = new Map(), 
-    coordinatorsMap = new Map()
+    coordinatorsMap = new Map(),
+    deleteEvent,
 }) => {
 
     const renderEvent = useCallback((event: IEvent) => {
@@ -23,6 +25,7 @@ export const EventsList: React.FC<IEventsListProps> = ({
                 event={event} 
                 coordinator={coordinatorsMap.get(event.id)?.name} 
                 category={categoriesMap.get(event.id)?.name} key={event.id}
+                deleteEvent={deleteEvent}
             />
         );
     }, [coordinatorsMap, categoriesMap]);

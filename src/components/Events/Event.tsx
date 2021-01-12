@@ -12,6 +12,7 @@ export interface IEventProps {
     event: IEvent;
     category: string;
     coordinator: string;
+    deleteEvent: (id: number) => void;
 }
 
 export const EventGridBox = styled(Box)`
@@ -60,7 +61,7 @@ const DateInfoGridArea = styled(Box)`
     grid-column-end: 13;
 `;
 
-export const Event: React.FC<IEventProps> = ({ event, category, coordinator }) => {
+export const Event: React.FC<IEventProps> = ({ event, category, coordinator, deleteEvent }) => {
     const { title, description, paid_event, event_fee, reward, duration } = event;
 
     const renderEventFee = useCallback(() => {
@@ -70,6 +71,10 @@ export const Event: React.FC<IEventProps> = ({ event, category, coordinator }) =
         </Text>
     }, [event_fee, paid_event]);
 
+    const handleDeleteClick = useCallback(() => {
+        deleteEvent(event.id);
+    }, [deleteEvent, event.id]);
+
     return (
         <EventGridBox data-testid="event">
             <TitleGridArea>
@@ -77,7 +82,7 @@ export const Event: React.FC<IEventProps> = ({ event, category, coordinator }) =
                 {renderEventFee()}
             </TitleGridArea>
             <ControlsGridArea>
-                <IconButton icon={DELETE_ICON} testId="delete-event-btn" />
+                <IconButton icon={DELETE_ICON} testId="delete-event-btn" onClick={handleDeleteClick} />
             </ControlsGridArea>
             <DescriptionGridArea lineHeight={1}>
                 <Text data-testid="event-description" size="13px">{description}</Text>

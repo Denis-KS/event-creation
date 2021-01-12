@@ -1,5 +1,5 @@
 import configureStore from 'redux-mock-store';
-import { cleanup, screen } from "@testing-library/react";
+import { cleanup, screen, within } from "@testing-library/react";
 import React from "react";
 import { mockedEventsArray, mockedInitialEvents } from "../../../__mocks__/events.mock";
 import { IStore } from "../../../models/store.model";
@@ -122,5 +122,16 @@ describe('Events', () => {
 
         expect(searchInput).toHaveValue('')
         expect(screen.queryByTestId('erase-search-btn')).not.toBeInTheDocument();
+    });
+
+    test('should remove event by delete button click', async () => {
+        setupComponent();
+
+        const events = await screen.findAllByTestId('event');
+        const button = within(events[0]).getByTestId('delete-event-btn');
+        
+        userEvent.click(button, { button: 0 });
+
+        expect(screen.queryByText('Test Event')).not.toBeInTheDocument();
     });
 });
