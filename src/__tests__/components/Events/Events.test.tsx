@@ -1,5 +1,5 @@
 import configureStore from 'redux-mock-store';
-import { cleanup, screen, within } from "@testing-library/react";
+import { screen, within } from "@testing-library/react";
 import React from "react";
 import { mockedEventsArray, mockedInitialEvents } from "../../../__mocks__/events.mock";
 import { IStore } from "../../../models/store.model";
@@ -18,21 +18,13 @@ export function setupComponent(state: IStore = { ...initialState, events: mocked
     const store = mockStore(state);
   
     renderWithRouter(<Provider store={store}><App /></Provider>);
-  }
-
-
-//   afterEach(() => {
-//     cleanup()
-//   });
+}
 
 describe('Events', () => {
 
     beforeEach(() => {
-        jest.resetModules();
         mock.onGet(eventsUrl).reply(200, mockedEventsArray);
     });
-
-    // afterEach(cleanup);
 
     test('should render placeholder when no events are loaded', async () => {
         mock.onGet(eventsUrl).reply(200, []);

@@ -2,6 +2,7 @@ import { IActivity } from "../models/activity.model";
 import { ICoordinator, ICoordinatorResponse } from "../models/coordinator.model";
 import { ICredentials } from "../models/credentials.model";
 import { IEvent } from "../models/event.model";
+import { IGroupedDropdown } from "../models/inputs.model";
 
 export const mockedEvent: IEvent = {
     id: 0,
@@ -84,4 +85,9 @@ export const mockedCoordinatorSelfGroup: ICredentials[] = [
 export const mockedCoordinatorsOthersGroup: ICredentials[] = [
     { id: 1, name: 'Test_2 Coordinator_2' },
     { id: 2, name: 'Test_3 Coordinator_3' },
+];
+
+export const mockedGroupedCoordinators: IGroupedDropdown<ICredentials>[] = [
+    { groupName: 'Me', options: mockedCoordinatorSelfGroup }, 
+    { groupName: 'Others', options: mockedCoordinatorsOthersGroup },
 ];

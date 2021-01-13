@@ -6,7 +6,7 @@ import { EventOverview } from './pages/event-overview';
 import { Events } from './components/Events/Events';
 import { Provider } from 'react-redux';
 import { store } from './store/reducer';
-import { CreateUpdateEvent } from './pages/create-update-event';
+import { CreateUpdateEvent } from './components/CreateUpdateEvent/CreateUpdateEvent';
 import { AppContentBox } from './components/styled/Box/AppContentBox';
 
 export enum Routes {

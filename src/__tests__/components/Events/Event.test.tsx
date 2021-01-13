@@ -17,6 +17,7 @@ describe('Event', () => {
             event: { ...mockedEvent },
             category: 'Test Category',
             coordinator: 'Test Coordinator',
+            deleteEvent: () => null,
         }
     });
 
