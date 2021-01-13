@@ -28,7 +28,7 @@ export const EventsList: React.FC<IEventsListProps> = ({
                 deleteEvent={deleteEvent}
             />
         );
-    }, [coordinatorsMap, categoriesMap]);
+    }, [coordinatorsMap, categoriesMap, deleteEvent]);
 
     return !isEmpty(events) 
         ? (<div data-testid="events-list">
