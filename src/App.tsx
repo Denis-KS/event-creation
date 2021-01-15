@@ -7,7 +7,8 @@ import { Events } from './components/Events/Events';
 import { Provider } from 'react-redux';
 import { store } from './store/reducer';
 import { CreateUpdateEvent } from './components/CreateUpdateEvent/CreateUpdateEvent';
-import { AppContentBox } from './components/styled/Box/AppContentBox';
+import { AppContentGrid } from './components/styled/Box/AppContentBox';
+import { ThemeProvider } from 'styled-components';
 
 export enum Routes {
   HOME = '/',
@@ -16,18 +17,34 @@ export enum Routes {
   UPDATE_EVENT = '/update-event/:id',
 }
 
+export interface ITheme {
+  breakpoints: {
+    iphone5: string;
+    ipad: string;
+  }
+}
+
+const defaultTheme: ITheme = {
+  breakpoints: {
+    iphone5: '420px',
+    ipad: '768px',
+  },
+};
+
 function App() {
   return (  
     <Provider store={store}>
       <div className="App">
-        <BrowserRouter>
-          <Header />
-          <AppContentBox>
-            <Route path={Routes.HOME} exact component={Events}/>
-            <Route path={Routes.CREATE_EVENT} component={CreateUpdateEvent}/>
-            <Route path={Routes.EVENT_OVERVIEW} exact component={EventOverview}/>
-          </AppContentBox>
-        </BrowserRouter>
+        <ThemeProvider theme={defaultTheme}>
+          <BrowserRouter>
+            <AppContentGrid>
+              <Header />
+              <Route path={Routes.HOME} exact component={Events}/>
+              <Route path={Routes.CREATE_EVENT} component={CreateUpdateEvent}/>
+              <Route path={Routes.EVENT_OVERVIEW} exact component={EventOverview}/>
+            </AppContentGrid>
+          </BrowserRouter>
+        </ThemeProvider>
       </div>
     </Provider>  
   );

@@ -8,9 +8,11 @@ interface IBoxProps {
     maxWidth?: string;
     lineHeight?: number;
     position?: string;
+    gridArea?: string;
 }
 
 export const Box = styled.div<IBoxProps>`
+    grid-area: ${props => props.gridArea || 'initial'};
     padding: ${props => props.padding || 'initial'};
     margin: ${props => props.margin || 'initial'};
     background-color: ${props => props.backgroundColor || 'initial'};

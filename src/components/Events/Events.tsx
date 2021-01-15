@@ -9,6 +9,7 @@ import { EventsList } from "./EventsList";
 import { FlexBox } from "../styled/Box/FlexBox";
 import { deleteEventAction, eraseSearchQueryAction, setSearchQueryAction } from "../../store/actions";
 import { SearchInput } from "../inputs/SearchInput";
+import { Box } from "../styled/Box/Box";
 
 export const Events: React.FC = () => {
     const dispatch = useDispatch();
@@ -52,7 +53,7 @@ export const Events: React.FC = () => {
     }, [dispatch]);
 
     return(
-        <div data-testid="events">
+        <Box data-testid="events" gridArea="content">
             <FlexBox justifyContent="space-between" margin="0 0 20px 0">
                 <SearchInput onChange={handleSearchInput} onErase={handleEraseSearchClick} value={searchQuery} />
                 <button onClick={handleCreateEventClick}>Create Event</button>
@@ -62,6 +63,6 @@ export const Events: React.FC = () => {
                 ? <EventsList events={events} coordinatorsMap={coordinatorsMap} categoriesMap={categoriesMap} deleteEvent={handleDeleteEvent} />
                 : renderPlaceholder()
             }
-        </div>
+        </Box>
     );
 }
