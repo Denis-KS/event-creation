@@ -24,7 +24,7 @@ export interface ITheme {
   }
 }
 
-const defaultTheme: ITheme = {
+export const defaultTheme: ITheme = {
   breakpoints: {
     iphone5: '420px',
     ipad: '768px',

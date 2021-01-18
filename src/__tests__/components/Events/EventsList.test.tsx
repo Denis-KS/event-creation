@@ -1,10 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
+import { ThemeProvider } from "styled-components";
+import { defaultTheme } from "../../../App";
 import { EventsList, IEventsListProps } from "../../../components/Events/EventsList";
 import { mockedActivitiesMap, mockedCoordinatorsMap, mockedEventsArray } from "../../../__mocks__/events.mock";
 
 function setupComponent(props: IEventsListProps): void {
-    render(<EventsList {...props}/>);
+    render(<ThemeProvider theme={defaultTheme}><EventsList {...props}/></ThemeProvider>);
 }
 
 describe('EventsList', () => {
@@ -14,7 +16,8 @@ describe('EventsList', () => {
         mockedProps = {
             events: mockedEventsArray,
             coordinatorsMap: mockedCoordinatorsMap,
-            categoriesMap: mockedActivitiesMap
+            categoriesMap: mockedActivitiesMap,
+            deleteEvent: () => null,
         };
     });
 

@@ -1,11 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
+import { ThemeProvider } from "styled-components";
+import { defaultTheme } from "../../../App";
 import { IEventProps } from "../../../components/Events/Event";
 import { Event } from '../../../components/Events/Event';
 import { mockedEvent } from "../../../__mocks__/events.mock";
 
 function setupComponent(props: IEventProps): void {
-    render(<Event { ...props } />);
+    render(<ThemeProvider theme={defaultTheme}><Event { ...props } /></ThemeProvider>);
 }
 
 describe('Event', () => {

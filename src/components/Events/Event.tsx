@@ -28,6 +28,14 @@ export const EventGridBox = styled(Box)`
     box-shadow: 5px 5px 5px #666;
     padding: 10px;
     margin: 0 0 10px 0;
+
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.ipad}) {
+        grid-template-areas:
+        "title title payment controls"
+        "description description description description"
+        "common coordinator date date";
+        grid-template-columns: 1fr 1fr 1fr 20px;
+    }
 `;
 
 const TitleGridArea = styled(Box)`
@@ -35,9 +43,11 @@ const TitleGridArea = styled(Box)`
     align-items: center;
 `;
 
-const PaymentGridArea = styled(Box)`
+const PaymentGridArea = styled(FlexBox)`
     grid-area: payment;
     padding: 0 3px;
+    justify-content: flex-end;
+    align-items: center;
 `;
 
 const ControlsGridArea = styled(FlexBox)`
