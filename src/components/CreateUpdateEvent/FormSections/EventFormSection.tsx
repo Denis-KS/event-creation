@@ -1,6 +1,6 @@
 import React from "react";
-import { Box } from "../styled/Box/Box";
-import { Text } from "../styled/Text";
+import { Box } from "../../styled/Box/Box";
+import { Text } from "../../styled/Text";
 
 interface IEventFormSectionProps {
     title: string;
