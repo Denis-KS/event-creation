@@ -40,6 +40,14 @@ const AppContentGrid = styled(Box)`
             "header header header"
             ". content .";
         grid-template-columns: 5px minmax(calc(${theme.breakpoints.iphone5} - 10px), auto) 5px;
+        
+        & > div {
+          grid-area: header;
+        }
+
+        & > div ~ div {
+          grid-area: content;
+        }
 
         @media screen and (min-width: ${theme.breakpoints.iphone5}) {
             grid-template-columns: 5px minmax(calc(${theme.breakpoints.iphone5} - 10px), auto) 5px;

@@ -8,7 +8,6 @@ import { getTitleFromUrl } from "./header-helpers";
 const HeaderWrapper = styled(Box)`
     display: inherit;
     grid-template-columns: inherit;
-    grid-area: header;
     margin: 0 0 20px 0;
     position: relative;
     background-color: #35588e;
@@ -22,10 +21,13 @@ const HeaderWrapper = styled(Box)`
         height: 10px;
         background-color: #1c3b68;
     }
+
+    & > * {
+        grid-column: 2/3;
+    }
 `;
 
 const HeaderText = styled.h3`
-    grid-column: 2/3;
     margin: 0;
     padding: 10px 0 5px 0;
     color: #fff;
