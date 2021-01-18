@@ -17,48 +17,50 @@ export interface IEventProps {
 
 export const EventGridBox = styled(Box)`
     display: grid;
-    grid-template-columns: repeat(12, minmax(20px, 1fr));
+    grid-template-areas:
+        "title title payment controls"
+        "description description description description"
+        "common coordinator coordinator coordinator"
+        "date date date date";
+    grid-template-columns: 50% 1fr auto 20px;
+
     background: #fff;
     box-shadow: 5px 5px 5px #666;
     padding: 10px;
     margin: 0 0 10px 0;
 `;
 
-const TitleGridArea = styled(FlexBox)`
-    grid-row: 1;
-    grid-column-start: 1;
-    grid-column-end: 12;
+const TitleGridArea = styled(Box)`
+    grid-area: title;
     align-items: center;
 `;
 
+const PaymentGridArea = styled(Box)`
+    grid-area: payment;
+    padding: 0 3px;
+`;
+
 const ControlsGridArea = styled(FlexBox)`
-    grid-row: 1;
-    justify-content: flex-end;
+    grid-area: controls;
+    align-items: center;
 `;
 
 const DescriptionGridArea = styled(Box)`
-    grid-row: 2;
-    grid-column-start: 1;
-    grid-column-end: 13;
-    height: 40px;
+    grid-area: description;
+    text-align: justify;
+    height: 50px;
 `;
 
 const CommonInfoGridArea = styled(Box)`
-    grid-row: 3;
-    grid-column-start: 1;
-    grid-column-end: 5;
+    grid-area: common;
 `;
 
 const CoordinatorInfoGridArea = styled(Box)`
-    grid-row: 3;
-    grid-column-start: 5;
-    grid-column-end: 9; 
+    grid-area: coordinator;
 `;
 
 const DateInfoGridArea = styled(Box)`
-    grid-row: 3;
-    grid-column-start: 9;
-    grid-column-end: 13;
+    grid-area: date;
 `;
 
 export const Event: React.FC<IEventProps> = ({ event, category, coordinator, deleteEvent }) => {
@@ -79,8 +81,10 @@ export const Event: React.FC<IEventProps> = ({ event, category, coordinator, del
         <EventGridBox data-testid="event">
             <TitleGridArea>
                 <Text data-testid="event-title" weight="bold" size='18px'>{title}</Text>
-                {renderEventFee()}
             </TitleGridArea>
+            <PaymentGridArea>
+                {renderEventFee()}
+            </PaymentGridArea>
             <ControlsGridArea>
                 <IconButton icon={DELETE_ICON} testId="delete-event-btn" onClick={handleDeleteClick} />
             </ControlsGridArea>
@@ -89,7 +93,7 @@ export const Event: React.FC<IEventProps> = ({ event, category, coordinator, del
             </DescriptionGridArea>
             <CommonInfoGridArea>
                 <EventDisplayProperty testId="event-category" title="Category" value={category} />
-                <EventDisplayProperty testId="event-reward" title="Reward" value={reward > 0 ? `${reward} reward points for attendance` : 'No Reward'} />
+                <EventDisplayProperty testId="event-reward" title="Reward" value={reward > 0 ? `${reward} points` : 'No Reward'} />
             </CommonInfoGridArea>
             <CoordinatorInfoGridArea>
                 <EventDisplayProperty testId="event-coordinator" title="Coordinator" value={coordinator} />

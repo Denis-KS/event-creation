@@ -85,7 +85,7 @@ describe('Event', () => {
         const element = screen.getByTestId('event-reward');
 
         expect(element).toBeInTheDocument();
-        expect(element).toHaveTextContent('100500 reward points for attendance');
+        expect(element).toHaveTextContent('100500 points');
     });
 
     test('should display event coordinator', () => {
