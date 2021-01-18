@@ -10,7 +10,7 @@ export const CreateUpdateEvent: React.FC = () => {
     const groupedCoordinators = useSelector(getGroupedCoordinatorsSelector);
 
     return (
-        <Box data-testid="create-update-event">
+        <Box data-testid="create-update-event" gridArea="content">
             <EventForm activities={activities} coordinators={groupedCoordinators} />
         </Box>
     );

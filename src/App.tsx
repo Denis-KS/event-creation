@@ -7,8 +7,8 @@ import { Events } from './components/Events/Events';
 import { Provider } from 'react-redux';
 import { store } from './store/reducer';
 import { CreateUpdateEvent } from './components/CreateUpdateEvent/CreateUpdateEvent';
-import { AppContentGrid } from './components/styled/Box/AppContentBox';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import { Box } from './components/styled/Box/Box';
 
 export enum Routes {
   HOME = '/',
@@ -30,6 +30,26 @@ export const defaultTheme: ITheme = {
     ipad: '768px',
   },
 };
+
+const AppContentGrid = styled(Box)`
+
+    ${({ theme }) => `
+        min-width: ${theme.breakpoints.iphone5};
+        display: grid;
+        grid-template-areas: 
+            "header header header"
+            ". content .";
+        grid-template-columns: 5px minmax(calc(${theme.breakpoints.iphone5} - 10px), auto) 5px;
+
+        @media screen and (min-width: ${theme.breakpoints.iphone5}) {
+            grid-template-columns: 5px minmax(calc(${theme.breakpoints.iphone5} - 10px), auto) 5px;
+        }
+
+        @media screen and (min-width: ${theme.breakpoints.ipad}) {
+            grid-template-columns: 1fr ${theme.breakpoints.ipad} 1fr;
+        }
+    `}
+`;
 
 function App() {
   return (  
