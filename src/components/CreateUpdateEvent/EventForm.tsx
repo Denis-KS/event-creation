@@ -35,8 +35,30 @@ export const EventForm: React.FC<IEventFormProps> = ({ event, activities, coordi
                     <Text>reward points for attendance</Text>
                 </Box>
             </EventFormSection>
-            <EventFormSection title="Coordinator"></EventFormSection>
-            <EventFormSection title="When"></EventFormSection>
+            <EventFormSection title="Coordinator">
+                <Box>
+                    <label>Responsible<select data-testid="form-responsible" /></label>
+                </Box>
+                <Box>
+                    <label>Email<input data-testid="form-email" placeholder="Email" /></label>
+                </Box>
+            </EventFormSection>
+            <EventFormSection title="When">
+                <Box>
+                    <label>Starts On
+                        <input data-testid="form-date" type="date" />
+                        <input data-testid="form-time" type="time"></input>
+                        <Box data-testid="form-timePeriod">
+                            <label><input type="radio" />AM</label>
+                            <label><input type="radio" />PM</label>
+                        </Box>
+                    </label>
+                </Box>
+                <Box>
+                    <label>Duration<input data-testid="form-duration" placeholder="Number" /></label>
+                    <Text>hour(s)</Text>
+                </Box>
+            </EventFormSection>
         </Box>
     );
 };

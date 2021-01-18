@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { EventForm, IEventFormProps } from "../../../components/CreateUpdateEvent/EventForm";
 import { mockedActivitiesArrayWithDefault, mockedGroupedCoordinators } from "../../../__mocks__/events.mock";
 
@@ -82,32 +82,55 @@ describe('EventForm', () => {
         expect(screen.getByText('reward points for attendance')).toBeInTheDocument();
     });
 
-    // test('should render label and input for responsible', async () => {
-    //     setupComponent(mockedProps);
+    test('should render label and input for responsible', async () => {
+        setupComponent(mockedProps);
 
-    //     expect(await screen.findByText('')).toBeInTheDocument();
-    //     expect(screen.getByTestId('')).toBeInTheDocument();
-    // });
+        expect(await screen.findByText('Responsible')).toBeInTheDocument();
+        expect(screen.getByTestId('form-responsible')).toBeInTheDocument();
+    });
 
-    // test('should render label and input for email', async () => {
-    //     setupComponent(mockedProps);
+    test('should render label and input for email', async () => {
+        setupComponent(mockedProps);
 
-    //     expect(await screen.findByText('')).toBeInTheDocument();
-    //     expect(screen.getByTestId('')).toBeInTheDocument();
-    // });
+        expect(await screen.findByText('Email')).toBeInTheDocument();
+        const input = (screen.getByTestId('form-email'));
+        expect(input).toBeInTheDocument();
+        expect(input.getAttribute('placeholder')).toBe('Email');
+    });
 
-    // test('should render label and input for start date and time', async () => {
-    //     setupComponent(mockedProps);
+    describe('Date Input', () => {
+        test('should render label for date and time input', async () => {
+            setupComponent(mockedProps);
+            expect(await screen.findByText('Starts On')).toBeInTheDocument();
+        });
 
-    //     expect(await screen.findByText('')).toBeInTheDocument();
-    //     expect(screen.getByTestId('')).toBeInTheDocument();
-    // });
+        test('should render date input', async () => {
+            setupComponent(mockedProps);
+            expect(await screen.findByTestId('form-date')).toBeInTheDocument();
+        });
 
-    // test('should render label and input for duration', async () => {
-    //     setupComponent(mockedProps);
+        test('should render time input', async () => {
+            setupComponent(mockedProps);
+            expect(await screen.findByTestId('form-time')).toBeInTheDocument();
+        });
 
-    //     expect(await screen.findByText('')).toBeInTheDocument();
-    //     expect(screen.getByTestId('')).toBeInTheDocument();
-    // });
+        test('should render time period switch', async () => {
+            setupComponent(mockedProps);
+
+            const timePerionSwitch = await screen.findByTestId('form-timePeriod');
+            expect(timePerionSwitch).toBeInTheDocument();
+            expect(within(timePerionSwitch).getAllByRole('radio')).toHaveLength(2);
+        });
+    });
+
+    test('should render label and input for duration', async () => {
+        setupComponent(mockedProps);
+
+        expect(await screen.findByText('Duration')).toBeInTheDocument();
+        const input = (screen.getByTestId('form-duration'));
+        expect(input).toBeInTheDocument();
+        expect(input.getAttribute('placeholder')).toBe('Number');
+        expect(screen.getByText('hour(s)')).toBeInTheDocument();
+    });
 
 });
