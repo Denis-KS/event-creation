@@ -14,6 +14,9 @@ interface IDateInputProps {
  
 const TimeInput = styled(InlineInput)`
     margin: 0 10px 0 0;
+    &&::-webkit-datetime-edit-ampm-field {
+        display: none;
+    }
 `;
 
 export const DateInput: React.FC<IDateInputProps> = ({ data, handleChange }) => {
